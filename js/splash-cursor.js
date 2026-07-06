@@ -922,31 +922,14 @@
     }
 
     function generateColor() {
-        if (config.usePrimaryColors) {
-            const primaryColors = [
-                { r: 0xfd / 255, g: 0xd1 / 255, b: 0x9b / 255 },
-                { r: 0xfb / 255, g: 0xa4 / 255, b: 0xbc / 255 },
-                { r: 0xf5 / 255, g: 0x75 / 255, b: 0xa5 / 255 },
-                { r: 0xeb / 255, g: 0x51 / 255, b: 0x9b / 255 },
-                { r: 0xde / 255, g: 0x1d / 255, b: 0x8d / 255 },
-                { r: 0xbe / 255, g: 0x15 / 255, b: 0x88 / 255 },
-                { r: 0x9f / 255, g: 0x0e / 255, b: 0x7f / 255 },
-                { r: 0x80 / 255, g: 0x09 / 255, b: 0x72 / 255 },
-                { r: 0x6a / 255, g: 0x05 / 255, b: 0x68 / 255 },
-            ];
-
-            const c = primaryColors[Math.floor(Math.random() * primaryColors.length)];
-            return {
-                r: c.r * 0.15,
-                g: c.g * 0.15,
-                b: c.b * 0.15,
-            };
-        }
-
-        const c = HSVtoRGB(Math.random(), 1.0, 1.0);
-        c.r *= 0.15;
-        c.g *= 0.15;
-        c.b *= 0.15;
+        // Generate colors in the gold/amber range (Hue: 32 to 48 degrees)
+        const h = 0.08 + Math.random() * 0.05;
+        const s = 0.8 + Math.random() * 0.2;
+        const v = 0.9 + Math.random() * 0.1;
+        const c = HSVtoRGB(h, s, v);
+        c.r *= 0.18;
+        c.g *= 0.18;
+        c.b *= 0.18;
         return c;
     }
 
