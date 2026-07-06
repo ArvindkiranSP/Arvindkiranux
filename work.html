@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Arvind Kiran</title>
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="font/bootstrap-icons.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- main styles -->
+<link rel="stylesheet" href="css/style.css" />
+<!-- case study styles -->
+<link rel="stylesheet" href="css/work.css" />
+</head>
+
+<body class="work-detail-page">
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- Background -->
+<div id="mesh">
+  <div class="mesh-blob mb1"></div>
+  <div class="mesh-blob mb2"></div>
+  <div class="mesh-blob mb3"></div>
+</div>
+<div class="bg-layer noise-layer"></div>
+<div class="bg-layer scan-lines"></div>
+<div id="vignette"></div>
+<div class="v-line vl1"></div>
+<div class="v-line vl2"></div>
+
+<!-- Fixed Topbar -->
+<div id="topbar" class="fixed-topbar">
+  <div class="logo">Arvind <em>&</em> Kiran</div>
+  <div class="top-right">
+    <div id="clock" class="top-time">00:00:00</div>
+  </div>
+</div>
+
+<!-- Case Study Wrapper Container -->
+<div class="work-content-wrap">
+  <a href="index.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Portfolio</a>
+
+  <!-- Case Study Dynamic Header -->
+  <header class="work-header-section">
+    <span class="work-cat-tag" id="cs-cat">TV UX · AI</span>
+    <h1 class="work-title-main" id="cs-title">Loading Case Study...</h1>
+    
+    <!-- Meta details card -->
+    <div class="work-meta-grid">
+      <div class="work-meta-item">
+        <span class="work-meta-lbl">Role</span>
+        <span class="work-meta-val" id="cs-role">Lead Product Designer</span>
+      </div>
+      <div class="work-meta-item">
+        <span class="work-meta-lbl">Duration</span>
+        <span class="work-meta-val" id="cs-duration">6 Months (2026)</span>
+      </div>
+      <div class="work-meta-item">
+        <span class="work-meta-lbl">Client / Platform</span>
+        <span class="work-meta-val" id="cs-platform">Google TV / Smart TVs</span>
+      </div>
+      <div class="work-meta-item">
+        <span class="work-meta-lbl">Key Outcome</span>
+        <span class="work-meta-val highlight" id="cs-outcome">+40% Content Discovery</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Image -->
+  <div class="work-hero-img-wrap">
+    <img class="work-hero-img" id="cs-img" src="" alt="Case Study Banner">
+  </div>
+
+  <!-- Body Content -->
+  <div class="work-body-layout" id="cs-body">
+    <!-- Context injected dynamically -->
+  </div>
+
+  <!-- Next Project Navigation Link -->
+  <div class="next-project-link" id="next-proj-btn">
+    <span class="next-proj-lbl">Next Case Study</span>
+    <span class="next-proj-title" id="next-proj-title">Loading Next Project...</span>
+  </div>
+
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<!-- jQuery -->
+<script src="js/jquery-3.7.1.min.js"></script>
+<!-- Bootstrap 5 JS -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- GSAP -->
+<script src="js/gsap.min.js"></script>
+<!-- Fluid Cursor -->
+<script src="js/splash-cursor.js"></script>
+
+<!-- Dynamic Case Study Controller Script -->
+<script>
+  $(function() {
+    // ── Clock ──
+    function tick() {
+      const d = new Date();
+      const t = [d.getHours(), d.getMinutes(), d.getSeconds()].map(n => String(n).padStart(2, '0')).join(':');
+      $('#clock').text(t);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ── Simple Mouse Parallax ──
+    $(document).on('mousemove', function(e) {
+      const rx = e.clientX / window.innerWidth - .5;
+      const ry = e.clientY / window.innerHeight - .5;
+      gsap.to('.mb1', { x: rx * 50, y: ry * 50, duration: 2.5, ease: 'power1.out' });
+      gsap.to('.mb2', { x: rx * -35, y: ry * -35, duration: 2.5, ease: 'power1.out' });
+      gsap.to('.mb3', { x: rx * 25, y: ry * 20, duration: 2.5, ease: 'power1.out' });
+    });
+
+    // ── Case Study Content Data ──
+    const caseStudies = {
+      '1': {
+        title: 'Rewatch',
+        category: 'AI-assisted discovery for shared living rooms — a concept exploring how Google TV could design for the room, not just the account holder.',
+        role: 'Interaction Designer (Concept)',
+        duration: '9 Months (2026)',
+        platform: 'Google TV / Voice Devices',
+        outcome: '-78% Search Time',
+        image: 'img/blog/Rewatch.png',
+        body: `
+          <div class="case-study-section" id="ep00">
+            <h2>Episode 00 — Frame the Problem</h2>
+            <p>Google TV's homescreen assumes a single viewer's taste. Shared households — couples, roommates, multi-generational families — either browse endlessly, default to whoever grabbed the remote first, or fall back to a familiar rewatch out of decision fatigue.</p>
+            
+            <div class="callout">
+              <div class="label">Why AI is the right lever</div>
+              <p>This isn't solvable with better information architecture alone. It requires <strong>inferring</strong> who's in the room and <strong>negotiating</strong> between competing preferences in real time — turning "whose turn is it to pick" into a shared, low-effort decision instead of a source of friction.</p>
+            </div>
+          </div>
+
+          <div class="case-study-section" id="ep01">
+            <h2>Episode 01 — Research</h2>
+            <p>Streaming decision fatigue is well documented, co-viewing is rising, and Google TV's single-profile design is a known, active pain point — together they build the case for this project.</p>
+            
+            <div class="stats">
+              <div class="stat"><div class="num">7–10.5</div><div class="lbl">Minutes spent deciding what to watch, per session</div></div>
+              <div class="stat"><div class="num">110</div><div class="lbl">Hours per year spent scrolling streaming apps</div></div>
+              <div class="stat"><div class="num">94%</div><div class="lbl">Of parents report co-viewing more than a year ago</div></div>
+              <div class="stat"><div class="num">1</div><div class="lbl">Profile Google TV assumes per household</div></div>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Insight</th>
+                  <th>Evidence</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Decision fatigue is large and growing</td>
+                  <td>Nielsen, State of Play (2023)</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Co-viewing is increasing, not shrinking</td>
+                  <td>Future Today study (2022)</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Shared friction has real relational cost</td>
+                  <td>Lancaster University (2019)</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Google TV's multi-user gap is documented</td>
+                  <td>Android Police; 2025 bug reports</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>People already want mediated group decisions</td>
+                  <td>ACM, shared remote viewing study</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="callout">
+              <div class="label">Throughline</div>
+              <p>Decision fatigue (universal) → co-viewing growth (trend) → relational friction (stakes) → Google TV's specific gap (opportunity) → AI-mediated negotiation (solution).</p>
+            </div>
+          </div>
+
+          <div class="case-study-section" id="ep02">
+            <h2>Episode 02 — Define</h2>
+            <p>Defining users, their current journey pain points, and core UX principles for shared living rooms.</p>
+            
+            <div class="personas">
+              <div class="persona">
+                <div class="avatars"><div class="avatar blue">P</div><div class="avatar pink">J</div></div>
+                <h3>Priya &amp; Jordan</h3>
+                <p>The mismatched household. One shared account absorbs both their tastes into a muddled feed.</p>
+                <div class="need">Wants to be seen as a real user, not a guest on someone else's profile.</div>
+              </div>
+              <div class="persona">
+                <div class="avatars"><div class="avatar amber">A</div><div class="avatar green">A</div></div>
+                <h3>The Alvarez family</h3>
+                <p>Multi-generational household — two kids, two parents, a grandmother, sharply different needs.</p>
+                <div class="need">Wants a shared decision that still respects each person's boundaries.</div>
+              </div>
+              <div class="persona">
+                <div class="avatars"><div class="avatar blue">M</div></div>
+                <h3>Marcus</h3>
+                <p>The reluctant account holder. Roommates cast from their phones just to avoid touching "his" profile.</p>
+                <div class="need">Wants to stop being the default decision-maker just because he owns the login.</div>
+              </div>
+            </div>
+
+            <div class="journey">
+              <div class="journey-step"><div class="stage">Arrival</div><p>Whoever grabs the remote controls the session — no negotiation exists.</p></div>
+              <div class="journey-step"><div class="stage">Browse</div><p>Homescreen reflects one account's taste only.</p></div>
+              <div class="journey-step"><div class="stage">Scroll</div><p>Group vetoes options out loud, 7–10.5 min average.</p></div>
+              <div class="journey-step"><div class="stage">Conflict</div><p>Someone disengages or pushes their pick through.</p></div>
+              <div class="journey-step"><div class="stage">Resolution</div><p>Group settles for a safe rewatch, or gives up.</p></div>
+              <div class="journey-step"><div class="stage">Post-watch</div><p>Only the account holder's profile learns anything.</p></div>
+            </div>
+
+            <div class="principles">
+              <div class="principle"><div class="n">01</div><div class="t">Represent the room, not the remote-holder</div></div>
+              <div class="principle"><div class="n">02</div><div class="t">Negotiate, don't dictate</div></div>
+              <div class="principle"><div class="n">03</div><div class="t">Explainable, not a black box</div></div>
+              <div class="principle"><div class="n">04</div><div class="t">Ambient, not intrusive</div></div>
+              <div class="principle"><div class="n">05</div><div class="t">Fair over frictionless</div></div>
+            </div>
+          </div>
+
+          <div class="case-study-section" id="ep03">
+            <h2>Episode 03 — Design</h2>
+            <p>The core shift: instead of asking <em>"what does the account holder want,"</em> the system asks <em>"what does the room want"</em> — and every viewer's reaction feeds back into future suggestions.</p>
+
+            <svg viewBox="0 0 680 200" width="100%" style="margin:24px 0 6px; overflow:visible;">
+              <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#726f7c" stroke-width="1.5"/></marker></defs>
+              <g>
+                <rect x="10" y="78" width="130" height="44" rx="8" fill="#201e28" stroke="#2c2938"/>
+                <text x="75" y="96" text-anchor="middle" fill="#edeae3" font-family="Inter" font-size="11" font-weight="500">TV turns on</text>
+                <text x="75" y="112" text-anchor="middle" fill="#726f7c" font-family="Inter" font-size="9">Multiple present</text>
+              </g>
+              <line x1="140" y1="100" x2="168" y2="100" stroke="#726f7c" stroke-width="1" marker-end="url(#a1)"/>
+              <g>
+                <rect x="170" y="78" width="130" height="44" rx="8" fill="#1c2a3d" stroke="#2f4867"/>
+                <text x="235" y="96" text-anchor="middle" fill="#8ab4f8" font-family="Inter" font-size="11" font-weight="500">Detects viewers</text>
+                <text x="235" y="112" text-anchor="middle" fill="#6f8bb0" font-family="Inter" font-size="9">Opt-in signals</text>
+              </g>
+              <line x1="300" y1="100" x2="328" y2="100" stroke="#726f7c" stroke-width="1" marker-end="url(#a1)"/>
+              <g>
+                <rect x="330" y="78" width="130" height="44" rx="8" fill="#291f38" stroke="#4a3768"/>
+                <text x="395" y="96" text-anchor="middle" fill="#c9a8f0" font-family="Inter" font-size="11" font-weight="500">Proposes shortlist</text>
+                <text x="395" y="112" text-anchor="middle" fill="#9c7dc4" font-family="Inter" font-size="9">Blends tastes</text>
+              </g>
+              <line x1="460" y1="100" x2="488" y2="100" stroke="#726f7c" stroke-width="1" marker-end="url(#a1)"/>
+              <g>
+                <rect x="490" y="78" width="130" height="44" rx="8" fill="#1a3226" stroke="#2f5940"/>
+                <text x="555" y="96" text-anchor="middle" fill="#7cc48a" font-family="Inter" font-size="11" font-weight="500">Household picks</text>
+                <text x="555" y="112" text-anchor="middle" fill="#5a9c68" font-family="Inter" font-size="9">Vote or veto</text>
+              </g>
+              <path d="M555 122 C 555 165, 235 165, 235 122" fill="none" stroke="#726f7c" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#a1)"/>
+              <text x="395" y="180" text-anchor="middle" fill="#726f7c" font-family="IBM Plex Mono" font-size="10">↻ outcome feeds tomorrow's shortlist</text>
+            </svg>
+            <div class="caption">FIG 3.1 — Group discovery flow, arrival to feedback loop</div>
+
+            <div class="tv-frame">
+              <div class="row">
+                <span style="color:#9aa0a6;font-size:11px;">Google TV</span>
+                <div class="tv-pill"><span class="dot blue"></span>Priya + Jordan watching</div>
+              </div>
+              <p style="color:#fff;font-size:13px;font-weight:500;margin:0 0 2px;">Tonight, for the room</p>
+              <p style="color:#9aa0a6;font-size:11px;margin:0 0 14px;">Picked to work for both of you</p>
+              <div class="tv-cards">
+                <div class="tv-card hi"><div class="thumb"></div><div class="title">The Bear</div><span class="tag blue">Jordan loved S1</span><span class="tag pink">Priya: new to you</span></div>
+                <div class="tv-card"><div class="thumb"></div><div class="title">Only Murders</div><span class="tag grey">Both watched S1</span></div>
+                <div class="tv-card"><div class="thumb"></div><div class="title">Wednesday</div><span class="tag blue">Jordan's list</span></div>
+              </div>
+              <div class="quickpick">
+                <div class="qp-row"><span class="qp-label">Quick pick</span><span class="qp-sub">Both remotes can vote</span></div>
+                <div class="votes">
+                  <div class="vote lead"><span>The Bear</span><span>●●○ 2</span></div>
+                  <div class="vote trail"><span>Only Murders</span><span>●○○ 1</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="caption">FIG 3.2 — Homescreen concept: "for the room" with reasoning tags and live voting</div>
+
+            <div class="case-study-img-grid">
+              <div>
+                <p>Voice input is <strong>additive</strong>: "something funny" and "not too long" combine into one filtered shortlist, rather than one person's command overriding the other's.</p>
+              </div>
+              <div>
+                <p>Veto is <strong>symmetric</strong> — anyone can rule an option out, and vetoed titles stay visible, greyed out, so the group can see what was cut and why.</p>
+              </div>
+            </div>
+
+            <hr style="border-color: var(--border); margin: 2rem 0;">
+
+            <h3>Trust layer: why this pick</h3>
+            <p>Every recommendation needs to answer "whose interests does this reflect?" — a long press on any title expands into a short, specific rationale rather than a generic "recommended for you."</p>
+            
+            <div class="tv-frame" style="max-width:420px; margin: 1.5rem 0;">
+              <p style="font-size:11px;color:#9aa0a6;margin:0 0 10px;">Long-press · why this pick</p>
+              <div class="trust-card">
+                <div class="trust-row"><span class="t-title">The Bear</span><span class="t-close">✕</span></div>
+                <div class="trust-reason">
+                  <div class="trust-dot" style="background:#8ab4f8;">J</div>
+                  <p><span class="who">Jordan</span> finished season 1 last week</p>
+                </div>
+                <div class="trust-reason">
+                  <div class="trust-dot" style="background:#f28bb8;">P</div>
+                  <p><span class="who">Priya</span> hasn't seen it — matches her comedy-drama history</p>
+                </div>
+                <div class="trust-reason">
+                  <div class="trust-dot" style="background:#726f7c;">i</div>
+                  <p>Episodes run 25–30 min, fits a weeknight</p>
+                </div>
+              </div>
+            </div>
+            <div class="caption">FIG 3.3 — Explainability on demand, not forced into every card</div>
+
+            <hr style="border-color: var(--border); margin: 2rem 0;">
+
+            <h3>Variant: the multi-generational household</h3>
+            <p>The Alvarez family stress-tests the model beyond two people. Content-appropriateness becomes a hard filter layered underneath taste-blending — a child's profile never sees an adult pick as a votable option, but everyone still sees themselves represented.</p>
+            
+            <div class="tv-frame">
+              <div class="row">
+                <span style="color:#9aa0a6;font-size:11px;">Google TV</span>
+                <div class="tv-pill"><span class="dot blue"></span>4 watching · family mode</div>
+              </div>
+              <p style="color:#fff;font-size:13px;font-weight:500;margin:0 0 2px;">Something everyone can watch</p>
+              <p style="color:#9aa0a6;font-size:11px;margin:0 0 14px;">Filtered for the youngest viewer, ranked for shared appeal</p>
+              <div class="tv-cards">
+                <div class="tv-card hi">
+                  <div class="thumb"></div>
+                  <div class="title">Luca</div>
+                  <span class="age-badge">All ages</span>
+                  <span class="tag blue" style="margin-top:5px;">Grandma's pick too</span>
+                </div>
+                <div class="tv-card">
+                  <div class="thumb"></div>
+                  <div class="title">Encanto</div>
+                  <span class="age-badge">All ages</span>
+                  <span class="tag grey">Kids requested twice</span>
+                </div>
+                <div class="tv-card" style="opacity:0.4;">
+                  <div class="thumb"></div>
+                  <div class="title">Stranger Things</div>
+                  <span class="tag grey">Hidden · not age-appropriate tonight</span>
+                </div>
+              </div>
+              <div class="quickpick">
+                <div class="qp-row"><span class="qp-label">Everyone's in agreement</span><span class="qp-sub">No vote needed</span></div>
+              </div>
+            </div>
+            <div class="caption">FIG 3.4 — Age-appropriateness filters before taste-blending ever runs, not after</div>
+
+            <hr style="border-color: var(--border); margin: 2rem 0;">
+
+            <h3>Variant: the hosted watch party</h3>
+            <p>Ambient detection works well for people who live together, but it doesn't cover a friend group gathering for one night only. This variant introduces an explicit, host-led session for exactly that case — five people, one TV, no shared history to infer from.</p>
+
+            <div class="callout">
+              <div class="label">The scene</div>
+              <p>Maya opens Google TV and taps <strong>Create Room</strong>. A QR code appears, calm and inviting, like a boarding pass for the evening. Leo, Aisha, Sam, and Ravi scan it with their phones and land straight inside Maya's room — no code to type, no room ID to hunt for. A soft chime marks each arrival: <em>4 of 5&nbsp;&hellip; 5 of 5.</em></p>
+              <p style="margin-top:12px;">The TV asks a simple question: <em>"What's everyone in the mood for?"</em> Each phone becomes a quiet ballot — a mood, a title, a quick veto. The AI cross-references five suggestions against five taste profiles and narrows it to a short list built for <em>this group, tonight</em>. Maya, still holding the login, makes the final call — but she's choosing from options the whole room already shaped.</p>
+            </div>
+
+            <p style="margin-top:28px;"><strong>User flow</strong> &mdash; from room creation to playback:</p>
+            <svg viewBox="0 0 680 470" width="100%" style="margin:16px 0 6px; overflow:visible;">
+              <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#726f7c" stroke-width="1.5"/></marker></defs>
+
+              <rect x="190" y="10" width="300" height="50" rx="8" fill="#201e28" stroke="#2c2938"/>
+              <text x="340" y="28" text-anchor="middle" fill="#edeae3" font-family="Inter" font-size="12" font-weight="500">Host creates a room</text>
+              <text x="340" y="45" text-anchor="middle" fill="#9aa0a6" font-family="Inter" font-size="10">Logged in with Google TV</text>
+              <line x1="340" y1="60" x2="340" y2="106" stroke="#726f7c" stroke-width="1" marker-end="url(#a2)"/>
+
+              <rect x="190" y="108" width="300" height="50" rx="8" fill="#152230" stroke="#254057"/>
+              <text x="340" y="126" text-anchor="middle" fill="#8ab4f8" font-family="Inter" font-size="12" font-weight="500">QR shown, 4 guests scan</text>
+              <text x="340" y="143" text-anchor="middle" fill="#6f8bb0" font-family="Inter" font-size="10">Joins auto-open in the TV app</text>
+              <line x1="340" y1="158" x2="340" y2="204" stroke="#726f7c" stroke-width="1" marker-end="url(#a2)"/>
+
+              <rect x="190" y="206" width="300" height="50" rx="8" fill="#152230" stroke="#254057"/>
+              <text x="340" y="224" text-anchor="middle" fill="#8ab4f8" font-family="Inter" font-size="12" font-weight="500">All 5 confirmed present</text>
+              <text x="340" y="241" text-anchor="middle" fill="#6f8bb0" font-family="Inter" font-size="10">Each submits a suggestion</text>
+              <line x1="340" y1="256" x2="340" y2="302" stroke="#726f7c" stroke-width="1" marker-end="url(#a2)"/>
+
+              <rect x="190" y="304" width="300" height="50" rx="8" fill="#291f38" stroke="#4a3768"/>
+              <text x="340" y="322" text-anchor="middle" fill="#c9a8f0" font-family="Inter" font-size="12" font-weight="500">AI ranks a shared shortlist</text>
+              <text x="340" y="339" text-anchor="middle" fill="#9c7dc4" font-family="Inter" font-size="10">Blends suggestions + taste profiles</text>
+              <line x1="340" y1="354" x2="340" y2="400" stroke="#726f7c" stroke-width="1" marker-end="url(#a2)"/>
+
+              <rect x="190" y="402" width="300" height="50" rx="8" fill="#1a3226" stroke="#2f5940"/>
+              <text x="340" y="420" text-anchor="middle" fill="#7cc48a" font-family="Inter" font-size="12" font-weight="500">Host picks, playback starts</text>
+              <text x="340" y="437" text-anchor="middle" fill="#5a9c68" font-family="Inter" font-size="10">Session learns for next time</text>
+            </svg>
+            <div class="caption">FIG 3.5 — Room creation to playback, host-led throughout</div>
+
+            <p style="margin-top:28px;"><strong>Architecture</strong> &mdash; four cooperating layers behind the flow:</p>
+            <svg viewBox="0 0 680 300" width="100%" style="margin:16px 0 6px; overflow:visible;">
+              <defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#726f7c" stroke-width="1.5"/></marker></defs>
+
+              <rect x="40" y="6" width="140" height="32" rx="8" fill="#201e28" stroke="#2c2938"/>
+              <text x="110" y="26" text-anchor="middle" fill="#c8c8c8" font-family="IBM Plex Mono" font-size="10">Google account</text>
+              <line x1="110" y1="38" x2="110" y2="98" stroke="#726f7c" stroke-width="1" marker-end="url(#a3)"/>
+
+              <rect x="20" y="46" width="640" height="220" rx="18" fill="none" stroke="#2c2938" stroke-width="1"/>
+              <text x="350" y="72" text-anchor="middle" fill="#edeae3" font-family="Fraunces" font-size="14" font-weight="600">Rewatch platform</text>
+              <text x="350" y="90" text-anchor="middle" fill="#726f7c" font-family="IBM Plex Mono" font-size="10">One room, five viewers</text>
+
+              <rect x="40" y="100" width="130" height="96" rx="12" fill="#152230" stroke="#254057"/>
+              <text x="105" y="140" text-anchor="middle" fill="#8ab4f8" font-family="Inter" font-size="12" font-weight="500">Client layer</text>
+              <text x="105" y="158" text-anchor="middle" fill="#6f8bb0" font-family="Inter" font-size="10">TV + phones</text>
+              <line x1="170" y1="148" x2="188" y2="148" stroke="#726f7c" stroke-width="1" marker-end="url(#a3)"/>
+
+              <rect x="190" y="100" width="130" height="96" rx="12" fill="#152230" stroke="#254057"/>
+              <text x="255" y="140" text-anchor="middle" fill="#8ab4f8" font-family="Inter" font-size="12" font-weight="500">Session service</text>
+              <text x="255" y="158" text-anchor="middle" fill="#6f8bb0" font-family="Inter" font-size="10">Rooms &amp; QR</text>
+              <line x1="320" y1="148" x2="338" y2="148" stroke="#726f7c" stroke-width="1" marker-end="url(#a3)"/>
+
+              <rect x="340" y="100" width="130" height="96" rx="12" fill="#291f38" stroke="#4a3768"/>
+              <text x="405" y="140" text-anchor="middle" fill="#c9a8f0" font-family="Inter" font-size="12" font-weight="500">AI engine</text>
+              <text x="405" y="158" text-anchor="middle" fill="#9c7dc4" font-family="Inter" font-size="10">Ranks picks</text>
+              <line x1="470" y1="148" x2="488" y2="148" stroke="#726f7c" stroke-width="1" marker-end="url(#a3)"/>
+
+              <rect x="490" y="100" width="130" height="96" rx="12" fill="#1a3226" stroke="#2f5940"/>
+              <text x="555" y="140" text-anchor="middle" fill="#7cc48a" font-family="Inter" font-size="12" font-weight="500">Playback</text>
+              <text x="555" y="158" text-anchor="middle" fill="#5a9c68" font-family="Inter" font-size="10">Starts movie</text>
+            </svg>
+            <div class="caption">FIG 3.6 — Only the host authenticates with a full account; guests join via the QR token itself</div>
+
+            <div class="case-study-img-grid">
+              <div>
+                <p>The <strong>AI engine sits between session and playback</strong>, not inside either — the same ranking logic that powers this hosted mode can also drive the ambient household mode from Figures 3.1&ndash;3.2, without being tied to the QR mechanic specifically.</p>
+              </div>
+              <div>
+                <p>A <strong>taste profile store</strong> (omitted above to keep the diagram uncluttered) sits alongside the AI engine, read at ranking time and updated after the session — the same feedback loop principle as the ambient mode.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-study-section" id="ep04">
+            <h2>Episode 04 — Validate</h2>
+            <p>Testing paired participants together, not solo — since the entire premise is group dynamics. Sessions used a clickable prototype of the negotiation flow.</p>
+            
+            <table>
+              <thead>
+                <tr>
+                  <th>Finding</th>
+                  <th>Severity</th>
+                  <th>Detail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Auto-play timer felt rushed</td>
+                  <td class="sev-high">High</td>
+                  <td>4 of 5 wanted more time to keep talking before the TV decided</td>
+                </tr>
+                <tr>
+                  <td>Veto icon easy to miss</td>
+                  <td class="sev-med">Medium</td>
+                  <td>Only 2 of 5 noticed the small ✕ without prompting</td>
+                </tr>
+                <tr>
+                  <td>Voice blending felt delightful once found</td>
+                  <td class="sev-pos">Positive</td>
+                  <td>Described as the TV "actually listening to the room"</td>
+                </tr>
+                <tr>
+                  <td>Greyed-out vetoes appreciated</td>
+                  <td class="sev-pos">Positive</td>
+                  <td>Participants liked seeing what was cut, and why</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="case-study-img-grid">
+              <div>
+                <div class="compare-tag before">Before</div>
+                <div class="tv-frame" style="margin:0;">
+                  <p style="color:#9aa0a6;font-size:11px;margin:0 0 10px;">3 matches for both of you</p>
+                  <div class="tv-card" style="margin-bottom:8px;"><div class="title">Abbott Elementary</div></div>
+                  <div class="tv-card" style="margin-bottom:12px;"><div class="title">Shadows</div></div>
+                  <p style="color:#e5807f;font-size:11px;margin:0;">⏱ Auto-plays in 00:07</p>
+                </div>
+              </div>
+              <div>
+                <div class="compare-tag after">After</div>
+                <div class="tv-frame" style="margin:0;">
+                  <p style="color:#9aa0a6;font-size:11px;margin:0 0 10px;">3 matches for both of you</p>
+                  <div class="tv-card" style="margin-bottom:8px;"><div class="title">Abbott Elementary</div></div>
+                  <div class="tv-card" style="margin-bottom:12px;"><div class="title">Shadows</div></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <p style="color:#9aa0a6;font-size:11px;margin:0;">⏱ Top pick plays in 45s</p>
+                    <span style="background:rgba(138,180,248,0.15);border:0.5px solid #8ab4f8;color:#8ab4f8;font-size:10px;padding:5px 10px;border-radius:7px;">Still deciding</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="caption">FIG 4.1 — Iterating on timeout pressure: longer window + explicit pause control</div>
+          </div>
+
+          <div class="case-study-section" id="ep05">
+            <h2>Episode 05 — Systemize</h2>
+            <p>Component states, OEM scaling and accessibility guidelines.</p>
+
+            <div class="tv-frame">
+              <p style="color:#9aa0a6;font-size:11px;margin:0 0 14px;">Shared pick card — component states</p>
+              <div class="tv-cards">
+                <div><div class="tv-card"><div class="thumb"></div><div class="title">The Bear</div></div><p style="text-align:center;font-size:10px;color:#726f7c;margin-top:6px;">Default</p></div>
+                <div><div class="tv-card" style="box-shadow:0 0 0 3px #8ab4f8; transform:scale(1.03);"><div class="thumb"></div><div class="title">The Bear</div></div><p style="text-align:center;font-size:10px;color:#8ab4f8;margin-top:6px;">Focused (D-pad)</p></div>
+                <div><div class="tv-card" style="border:1.5px solid #7cc48a;"><div class="thumb"></div><div class="title">The Bear</div></div><p style="text-align:center;font-size:10px;color:#7cc48a;margin-top:6px;">Selected</p></div>
+              </div>
+            </div>
+            <div class="caption">FIG 5.1 — Focus states must be unmistakable from across a room; no cursor, no hover</div>
+
+            <div class="case-study-img-grid">
+              <div class="callout" style="margin:0;">
+                <div class="label">Scaling across OEM hardware</div>
+                <p>Voice-capable remotes get the full negotiation flow. Basic D-pad remotes fall back to vote-by-navigation. Single-remote households simply don't see the group indicator — AI enhances, never gates, the core experience.</p>
+              </div>
+              <div class="callout" style="margin:0;">
+                <div class="label">Accessibility</div>
+                <p>Reasoning tags pair color with distinct icons for colorblind legibility. The negotiation panel is fully operable by voice alone, mirroring every on-screen control.</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      '2': {
+        title: 'INSafe CRM',
+        category: 'Building a Scalable Enterprise CRM and Design System for the Insurance Industry',
+        role: 'Lead Product Designer & UX/UI Department Lead',
+        duration: '8 Months',
+        platform: 'INSafe CRM / Web',
+        outcome: '100% Design System Adoption',
+        image: 'img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard.png',
+        body: `
+          <div class="case-study-section">
+            <h2>Overview</h2>
+            <p>Modern enterprises still rely on fragmented tools, outdated systems, and complex workflows that slow down teams and create operational friction. For this project, I designed <strong>INSafe CRM</strong>, a modern enterprise platform created to simplify customer management, operations, communication, and reporting within a single scalable ecosystem. The challenge was to build a system that could handle complex workflows while remaining intuitive and accessible for users with varying levels of technical experience.</p>
+            <p>InSafe, a company in the insurance industry, required this modern CRM tool to replace their outdated legacy systems and green-screen terminals used for creating and managing policies. The primary users were older employees who had spent years working with legacy interfaces, necessitating an intuitive and user-friendly interface. The tool needed to manage client information, track policy statuses, schedule appointments, generate reports, and include built-in email and call systems.</p>
+            <p>As the Product Designer and UX/UI Department Leader at InSafe, I successfully led the design team in creating a scalable design system and conceptualizing this internal CRM tool to turn these legacy workflows into a modern, unified experience.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>The Challenge & Underlying Problem</h2>
+            <p>The insurance industry typically relies on old systems and terminals, and InSafe's existing systems were outdated and not user-friendly, making it difficult for older employees to manage their tasks efficiently. The lack of integration between various functionalities led to major operational inefficiencies and reduced productivity.</p>
+            <p>The main challenges included:</p>
+            <ul>
+              <li><strong>Older User Demographics:</strong> Designing an intuitive and user-friendly interface suitable for older users who were accustomed to terminal interfaces for decades.</li>
+              <li><strong>Scale & Adoption:</strong> Creating a unified design system that would achieve 100% utilization and adoption across the entire platform.</li>
+              <li><strong>Complex Functionality Integration:</strong> Consolidating client management, policy tracking, appointment scheduling, reporting, and built-in email/call communication systems into a single cohesive tool.</li>
+            </ul>
+          </div>
+
+          <div class="case-study-section">
+            <h2>My Role</h2>
+            <p>As the lead product designer and UX/UI department leader, my role was to develop a comprehensive design system, create a detailed prototype, validate the product through user testing, and ensure seamless communication and alignment with stakeholders and developers.</p>
+            <p>My responsibilities spanned product discovery, UX research, information architecture, user flows, wireframing, high-fidelity UI design, prototyping, usability testing, stakeholder alignment, and design QA during developer handoff.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Our Approach</h2>
+            <p>To tackle these challenges, I structured our workflow around four main pillars:</p>
+            <ul>
+              <li><strong>Developed a Design System:</strong> Created a consistent, token-based design language that ensured ease of navigation, high contrast readability, and consistent interaction behaviors.</li>
+              <li><strong>Built a Prototype:</strong> Designed a detailed, interactive prototype mapping out every user interaction and workflow. This prototype was used to visualize system functionality and streamline development.</li>
+              <li><strong>User Testing & Validation:</strong> Validated the product and tested the prototype with actual older users to verify that navigation was intuitive, font scale was accessible, and task flows were clear.</li>
+              <li><strong>Stakeholder and Developer Collaboration:</strong> Maintained close communication with stakeholders and developers to understand user challenges and ensure that design solutions were technically feasible and executed precisely.</li>
+            </ul>
+          </div>
+
+          <div class="case-study-section">
+            <h2>The Solution</h2>
+            <p>The resulting CRM tool successfully consolidated <strong>16 integrated modules</strong> into a single cohesive platform. Key features included:</p>
+            <ul>
+              <li><strong>User-Friendly Interface:</strong> A clean layout featuring high-contrast status colors, larger interaction targets, and legible typography tailored specifically for older employees.</li>
+              <li><strong>Comprehensive Design System:</strong> A component-driven system (buttons, inputs, grids, data cards) utilized 100% across every single module.</li>
+              <li><strong>Unified Workflows:</strong> Consolidation of client management, policy tracking, calendars, reporting, and VoIP communication systems into one seamless app.</li>
+            </ul>
+          </div>
+
+          <div class="case-study-section">
+            <h2>UX Process</h2>
+            
+            <h3>1. Discovery</h3>
+            <p>Shadowing insurance agents and identifying key workflow bottlenecks in their daily routines.</p>
+            <img class="case-study-img" src="img/blog/IMS (InSafe)/Frame 1.png" alt="UX Research & Discovery">
+            
+            <h3>2. Information Architecture</h3>
+            <p>Mapping out a simplified navigation model for the 16 operational modules.</p>
+            <img class="case-study-img" src="img/blog/IMS (InSafe)/Frame 2.png" alt="Information Architecture Diagram">
+            
+            <h3>3. Wireframes</h3>
+            <p>Exploring early layout alternatives to simplify information density for older users.</p>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-7.png" alt="Low-Fidelity Wireframes Page 1">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-8.png" alt="Low-Fidelity Wireframes Page 2">
+            </div>
+            
+            <h3>4. High-Fidelity Design</h3>
+            <p>Creating production-ready interface layouts using the design system elements.</p>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-1.png" alt="Dashboard Screens Design 1">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-2.png" alt="Dashboard Screens Design 2">
+            </div>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-3.png" alt="Dashboard Screens Design 3">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-4.png" alt="Dashboard Screens Design 4">
+            </div>
+            
+            <h3>5. Interactive Prototype</h3>
+            <p>Simulating complex appointment schedules, claim updates, and email/call systems.</p>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-5.png" alt="Prototype Screen 1">
+              <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard-6.png" alt="Prototype Screen 2">
+            </div>
+            
+            <h3>6. User Testing</h3>
+            <p>Testing workflows with actual employees. We simplified table readability, removed redundant click paths, enlarged interactive elements, and improved color accessibility based on direct feedback.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Dashboard Design</h2>
+            <p>The dashboard provides real-time operational insights—such as active tasks, policy statuses, upcoming appointments, and VoIP notifications—enabling teams to manage their complete workday at a single glance.</p>
+            <img class="case-study-img" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard.png" alt="Dashboard Interface Showcase">
+          </div>
+
+          <div class="case-study-section">
+            <h2>Design Principles</h2>
+            <ul>
+              <li><strong>Clarity:</strong> High contrast, explicit state changes, and clean hierarchy.</li>
+              <li><strong>Consistency:</strong> The same reusable UI patterns speed up adaptation.</li>
+              <li><strong>Efficiency:</strong> Short paths to complete high-frequency operations.</li>
+              <li><strong>Accessibility:</strong> Built to serve users with lower visual acuity or manual precision.</li>
+              <li><strong>Scalability:</strong> Token-driven theme supports future module updates.</li>
+            </ul>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Visual Language</h2>
+            <p>The interface uses a modern enterprise visual style featuring structured layouts, soft card widgets, dark teal navigation bars, clean contrast typography, high-impact status signals, and spacious layouts to boost overall readability. The result balances professionalism with usability.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Results & Outcomes</h2>
+            <p>The final CRM tool significantly improved efficiency and user satisfaction at InSafe. The modernized interface made it easier for older employees to manage their tasks, leading to better overall performance for the company. The successful implementation of the design system ensured a cohesive and intuitive user experience across the platform, achieving 100% design system utilization.</p>
+            <p>This project highlights my approach to enterprise UX design, design systems thinking, operational workflows, and building scalable B2B product experiences for complex industries.</p>
+          </div>
+        `
+      },
+      '3': {
+        title: 'TM Project',
+        category: 'Manufacturing Execution & Production Monitoring System',
+        role: 'Lead UI/UX Architect',
+        duration: '11 Months (2024)',
+        platform: 'TV Dashboards & Operator Screens',
+        outcome: 'Downtime & Defect Reduction',
+        image: 'img/blog/TM UI/TM Arm rest UI Design.png',
+        body: `
+          <div class="case-study-section">
+            <h2>Project Overview</h2>
+            <p>TM is a smart manufacturing and production monitoring platform designed for assembly line operations, quality control, machine monitoring, packaging, downtime tracking, and traceability management. The system supports TV dashboards, operator screens, report analytics, and real-time production workflows across multiple assembly stations.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Problem Statement</h2>
+            <p>Manufacturing teams faced challenges in monitoring production activities, tracking downtime, managing quality defects, and handling real-time assembly workflows. Existing systems lacked centralized visibility, modern UI consistency, responsive dashboards, and operator-friendly interfaces for high-speed factory environments.</p>
+          </div>
+
+          <div class="stat-highlight-banner">
+            <div class="stat-highlight-item">
+              <div class="stat-highlight-num">100%</div>
+              <div class="stat-highlight-lbl">Live Visibility</div>
+            </div>
+            <div class="stat-highlight-item">
+              <div class="stat-highlight-num">-30%</div>
+              <div class="stat-highlight-lbl">Response Downtime</div>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Project Goals</h2>
+            <ul>
+              <li>Improve production visibility across assembly lines.</li>
+              <li>Create real-time monitoring dashboards for operators and supervisors.</li>
+              <li>Simplify traceability and barcode scanning workflows.</li>
+              <li>Reduce downtime through clear reporting and alerts.</li>
+              <li>Enable TV-based monitoring for production floors.</li>
+              <li>Improve quality rejection and rework management.</li>
+            </ul>
+          </div>
+
+          <div class="case-study-section">
+            <h2>User Roles</h2>
+            <p>We designed customized layouts for six distinct industrial roles: Production Operators, Supervisors, Quality Engineers, Maintenance Teams, Production Managers, and Packaging Operators.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Design System & Industrial Usability</h2>
+            <p>The design system focused on industrial usability with high visibility UI patterns. Dark blue dashboard themes were used for TV screens to improve readability from long distances. Bright status colors such as green, orange, red, and yellow were used for live production indicators and alerts.</p>
+            <p>Typography used bold large-scale fonts for readability in noisy, low-light factory environments. UI spacing and card layouts were optimized for touchscreen interaction and large-screen visibility.</p>
+            <img class="case-study-img" src="img/blog/TM UI/Preventive Maintenance Check Sheet.png" alt="Industrial Design Sheet Pattern">
+          </div>
+
+          <div class="case-study-section">
+            <h2>Traceability Module</h2>
+            <p>The traceability module was designed to track production activities using barcode scanning and station-based workflows. The screen included station category selection, production data cards, dropdown-based detail views, and searchable production records.</p>
+            <ul>
+              <li>Search by barcode or build label</li>
+              <li>Station category filtering</li>
+              <li>Dropdown station details</li>
+              <li>Production timestamps, operator tracking, and cycle time monitoring</li>
+            </ul>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/TM UI/TM Arm rest UI Design-1.png" alt="Traceability Workstation 1">
+              <img class="case-study-img" src="img/blog/TM UI/TM Arm rest UI Design-2.png" alt="Traceability Workstation 2">
+            </div>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/TM UI/TM Arm rest UI Design-3.png" alt="Traceability Workstation 3">
+              <img class="case-study-img" src="img/blog/TM UI/TM Arm rest UI Design.png" alt="Traceability Screen Details">
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Packaging TV Screen</h2>
+            <p>The packaging dashboard was designed for factory floor TV displays. The interface used large typography, bold KPI cards, and real-time scan tracking for visibility across long distances. It tracks target production, container balance monitoring, occupancy percentage, and active inventory tables.</p>
+            <img class="case-study-img" src="img/blog/TM UI/Packing screen.png" alt="Packaging TV Screen Interface">
+          </div>
+
+          <div class="case-study-section">
+            <h2>Live Production Video Demonstration</h2>
+            <p>Here are real-time screencasts and floor camera recordings of the operator interfaces and touch workflows running inside the assembly stations:</p>
+            <video class="case-study-video" controls loop muted autoplay>
+              
+            </video>
+            <video class="case-study-video" controls loop muted autoplay>
+              <source src="img/blog/TM UI/WhatsApp Video 2026-01-22 at 8.51.13 PM.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div class="case-study-section">
+            <h2>OEE Dashboard</h2>
+            <p>The OEE dashboard provided production efficiency monitoring using Availability, Performance, Quality, and OEE metrics. Interactive charts and production summaries were included to help supervisors analyze production trends.</p>
+            <img class="case-study-img" src="img/blog/TM UI/OEE dashboard.png" alt="Overall Equipment Effectiveness Dashboard">
+          </div>
+
+          <div class="case-study-section">
+            <h2>Downtime & Efficiency Reporting</h2>
+            <p>Downtime analytics screens were designed to visualize production loss, runtime, maintenance breakdowns, and stoppage categories. Multiple chart styles such as stacked bar charts, pie charts, and occurrence graphs were used for better visual analysis.</p>
+            <img class="case-study-img" src="img/blog/TM UI/Hourly Efficiency scren.png" alt="Hourly Efficiency and Downtime Tracker">
+          </div>
+
+          <div class="case-study-section">
+            <h2>Rework Management & Rejections</h2>
+            <p>The rework module allowed operators to identify defective seats, view pending defects, and move products to scrap or raw material recovery workflows. A dismantle popup was designed to show reusable raw materials and recovery options.</p>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/TM UI/TM Arm rest UI Design-4.png" alt="Rework Defect Card Interface">
+              <img class="case-study-img" src="img/blog/TM UI/TM Arm rest UI Design-5.png" alt="Rework Scrap Movement Options">
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h2>User Testing & Assembly Floor Validation</h2>
+            <p>Testing layouts on the factory floor with assembly workers, supervisors, and quality auditors helped us refine interaction sizing. We observed touch response in actual working conditions (wearing protective gloves, viewing from angles, etc.).</p>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/TM UI/WhatsApp Image 2026-03-12 at 12.58.10 PM.jpeg" alt="Operator Terminal Field Test">
+              <img class="case-study-img" src="img/blog/TM UI/WhatsApp Image 2026-03-12 at 2.22.03 PM.jpeg" alt="Supervisors TV Board Review">
+            </div>
+            <div class="case-study-img-grid">
+              <img class="case-study-img" src="img/blog/TM UI/WhatsApp Image 2026-03-12 at 3.24.01 PM.jpeg" alt="Quality Inspector Test Session">
+              <img class="case-study-img" src="img/blog/TM UI/WhatsApp Image 2026-03-13 at 3.13.29 PM.jpeg" alt="Maintenance Team Terminal shadow">
+            </div>
+            <p>Here is an operations review recording from the assembly line validation session:</p>
+            <video class="case-study-video" controls loop muted autoplay>
+              <source src="img/blog/TM UI/WhatsApp Video 2026-05-25 at 5.33.35 PM.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Conclusion</h2>
+            <p>The TM Project successfully modernized the manufacturing workflow experience through a unified UI/UX system. The dashboards, production screens, and reporting modules improved operational visibility, reduced workflow complexity, and enabled efficient real-time production management across assembly lines.</p>
+          </div>
+        `
+      },
+      '4': {
+        title: 'Supplier Portal',
+        category: 'Information Architecture · Design System · Responsive Dashboard',
+        role: 'UX Designer & Developer',
+        duration: '5 Months (2024)',
+        platform: 'Responsive Web Portal',
+        outcome: '94% On-time Deliveries',
+        image: 'img/portfolio/work4.jpg',
+        body: `
+          <div class="case-study-section">
+            <h2>Overview & Challenge</h2>
+            <p>A global retailer needed a unified portal to manage delivery coordination with over 600 third-party suppliers. The existing supplier portal was not mobile responsive, had poor text readability, and lacked notifications. Suppliers often missed order requests, causing delays. The challenge was to design a clean, responsive supplier portal for tracking and coordinating deliveries.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Research & Architecture</h2>
+            <p>We surveyed suppliers and realized they predominantly access the portal on tablets and mobile phones while standing in loading bays. We rebuilt the information architecture, creating a responsive list grid that adapts to any screen size, and placing notifications at the top of the interface.</p>
+          </div>
+
+          <div class="stat-highlight-banner">
+            <div class="stat-highlight-item">
+              <div class="stat-highlight-num">94%</div>
+              <div class="stat-highlight-lbl">On-Time Deliveries</div>
+            </div>
+            <div class="stat-highlight-item">
+              <div class="stat-highlight-num">80%</div>
+              <div class="stat-highlight-lbl">Fewer Missed Alerts</div>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Design & Interaction</h2>
+            <p>We designed the dashboard with large touch targets, accessible typography, and high contrast fields. Alert mechanisms send push notifications directly to warehouse devices. The simple shipping workflow lets suppliers approve deliveries in exactly three clicks.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Impact</h2>
+            <p>With direct notifications and improved mobile layout, on-time supplier delivery ratios rose to 94%, significantly stabilizing inventory levels during peak retail seasons.</p>
+          </div>
+        `
+      },
+      '5': {
+        title: 'Healthcare Mobile App',
+        category: 'Mobile UX · Appointment Booking · Telemedicine',
+        role: 'Mobile UX Designer',
+        duration: '7 Months (2023)',
+        platform: 'iOS & Android App',
+        outcome: '+150% Booked Consultations',
+        image: 'img/portfolio/work5.jpg',
+        body: `
+          <div class="case-study-section">
+            <h2>Overview & Challenge</h2>
+            <p>With patient demands shifting toward virtual care, a major medical network needed to launch a unified mobile application. The target was to design a simple mobile portal that lets patients schedule appointments, view lab results, and launch telemedicine video consultations without feeling overwhelmed during stressful health events.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Research & Journey Mapping</h2>
+            <p>We interviewed senior patients and parents. We discovered that virtual booking apps are often abandoned because of complex verification inputs or ambiguous telemedicine setups. We mapped the user journey to remove verification hurdles and guide users directly to virtual doctor rooms.</p>
+          </div>
+
+          <div class="stat-highlight-banner">
+            <div class="stat-highlight-item">
+              <div class="stat-highlight-num">150%</div>
+              <div class="stat-highlight-lbl">Booking Volume Growth</div>
+            </div>
+            <div class="stat-highlight-item">
+              <div class="stat-highlight-num">4.9</div>
+              <div class="stat-highlight-lbl">App Store Rating</div>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Interaction Design & Security</h2>
+            <p>We built the booking workflow with simple progress trackers and step-by-step guidance. Telemedicine launching features a single-click action button that connects to the call directly within the app. Clean, calm layout colors reassure anxious patients, while facial biometric login provides security with minimal effort.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Outcomes</h2>
+            <p>The patient application reached over 100k downloads in its first quarter, raising virtual consult bookings by 150% and maintaining a 4.9 App Store satisfaction score.</p>
+          </div>
+        `
+      }
+    };
+
+    // ── URL Routing ──
+    const params = new URLSearchParams(window.location.search);
+    let projectId = params.get('project') || '1';
+
+    // Fallback if id is out of bounds
+    if (!caseStudies[projectId]) {
+      projectId = '1';
+    }
+
+    const currentCs = caseStudies[projectId];
+    $('#cs-title').text(currentCs.title);
+    $('#cs-cat').text(currentCs.category);
+    $('#cs-role').text(currentCs.role);
+    $('#cs-duration').text(currentCs.duration);
+    $('#cs-platform').text(currentCs.platform);
+    $('#cs-outcome').text(currentCs.outcome);
+    $('#cs-img').attr('src', currentCs.image);
+    $('#cs-body').html(currentCs.body);
+
+    document.title = currentCs.title + ' — Case Study';
+
+    // ── Next Project Logic ──
+    const totalProjects = Object.keys(caseStudies).length;
+    let nextProjId = parseInt(projectId) + 1;
+    if (nextProjId > totalProjects) {
+      nextProjId = 1;
+    }
+
+    const nextCs = caseStudies[String(nextProjId)];
+    $('#next-proj-title').text(nextCs.title);
+    $('#next-proj-btn').on('click', function() {
+      window.location.href = 'work.html?project=' + nextProjId;
+    });
+
+    // Custom Cursor Growth Effect
+    $('a, button, .back-link, .next-project-link').on('mouseenter', function() {
+      $('body').addClass('cur-grow');
+    }).on('mouseleave', function() {
+      $('body').removeClass('cur-grow');
+    });
+
+    // Custom Cursor movement mirroring
+    $(document).on('mousemove', function(e) {
+      $('#cur').css({ left: e.clientX, top: e.clientY });
+      setTimeout(() => $('#cur-r').css({ left: e.clientX, top: e.clientY }), 70);
+    });
+  });
+</script>
+
+</body>
+</html>

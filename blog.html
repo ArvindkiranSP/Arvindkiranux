@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UX Thinking — Arvind Kiran</title>
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="font/bootstrap-icons.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- main styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- blog styles -->
+  <link rel="stylesheet" href="css/blog.css" />
+</head>
+
+<body class="blog-page">
+
+  <div id="cur"></div>
+  <div id="cur-r"></div>
+
+  <!-- Background -->
+  <div id="mesh">
+    <div class="mesh-blob mb1"></div>
+    <div class="mesh-blob mb2"></div>
+    <div class="mesh-blob mb3"></div>
+  </div>
+  <div class="bg-layer noise-layer"></div>
+  <div class="bg-layer scan-lines"></div>
+  <div id="vignette"></div>
+  <div class="v-line vl1"></div>
+  <div class="v-line vl2"></div>
+
+  <!-- Fixed Topbar -->
+  <div id="topbar" class="fixed-topbar">
+    <div class="logo">Arvind <em>&</em> Kiran</div>
+    <div class="top-right">
+      <div id="clock" class="top-time">00:00:00</div>
+    </div>
+  </div>
+
+  <!-- Blog Wrapper Container -->
+  <div class="blog-content-wrap">
+    <a href="index.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Portfolio</a>
+
+    <!-- DYNAMIC POST VIEW (Rendered by JS) -->
+    <div id="post-view" style="display: none;">
+      <article class="blog-post">
+        <header class="blog-post-header">
+          <span class="blog-post-cat" id="post-cat">AI & UX</span>
+          <h1 class="blog-post-title" id="post-title">Loading Article...</h1>
+          <div class="blog-post-meta">
+            <span id="post-date">June 2026</span>
+            <span>·</span>
+            <span id="post-readtime">8 min read</span>
+          </div>
+        </header>
+
+        <div class="blog-post-hero-img-wrap">
+          <img class="blog-post-hero-img" id="post-img" src="" alt="Article Banner">
+        </div>
+
+        <div class="blog-post-body" id="post-body">
+          <!-- Content will be injected here -->
+        </div>
+      </article>
+
+      <!-- Read Next Section -->
+      <section class="read-next-sec">
+        <h3 class="read-next-title">Read Next</h3>
+        <div class="read-next-grid" id="read-next-grid">
+          <!-- Next posts will be injected here -->
+        </div>
+      </section>
+    </div>
+
+    <!-- ALL POSTS LISTING VIEW (Rendered by JS when no parameters exist) -->
+    <div id="listing-view" style="display: none;">
+      <header class="blog-listing-header">
+        <h1 class="blog-listing-title">UX Thinking</h1>
+        <p class="blog-listing-sub">Thoughts, case studies, and insights from the design journal</p>
+      </header>
+
+      <div class="blog-list-grid" id="blog-list-grid">
+        <!-- Blog cards will be injected here -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <!-- jQuery -->
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap 5 JS -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- GSAP -->
+  <script src="js/gsap.min.js"></script>
+  <!-- Fluid Cursor -->
+  <script src="js/splash-cursor.js"></script>
+
+  <!-- Dynamic Blog Controller Script -->
+  <script>
+    $(function () {
+      // ── Clock ──
+      function tick() {
+        const d = new Date();
+        const t = [d.getHours(), d.getMinutes(), d.getSeconds()].map(n => String(n).padStart(2, '0')).join(':');
+        $('#clock').text(t);
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      // ── Simple Mouse Parallax ──
+      $(document).on('mousemove', function (e) {
+        const rx = e.clientX / window.innerWidth - .5;
+        const ry = e.clientY / window.innerHeight - .5;
+        gsap.to('.mb1', { x: rx * 50, y: ry * 50, duration: 2.5, ease: 'power1.out' });
+        gsap.to('.mb2', { x: rx * -35, y: ry * -35, duration: 2.5, ease: 'power1.out' });
+        gsap.to('.mb3', { x: rx * 25, y: ry * 20, duration: 2.5, ease: 'power1.out' });
+      });
+
+      // ── Blog Data ──
+      const posts = {
+        '1': {
+          title: 'Designing AI Experiences People Trust',
+          category: 'AI & UX',
+          date: 'Jun 2026',
+          readtime: '8 min read',
+          image: 'img/blog/ChatGPT Image Jul 2, 2026, 04_56_15 PM.png',
+          body: `
+          <p class="lead">Imagine this. It's 8:30 on a Monday morning. A production manager opens an AI-powered dashboard. Within seconds, the system highlights three machines that may fail within the next 48 hours. It recommends maintenance, predicts production delays, and even suggests shifting operators to another line.</p>
+          
+          <p>The manager pauses. Not because the prediction is difficult to understand, but because of a much bigger question: <strong>"Can I trust this?"</strong></p>
+          <p>That single question determines whether AI becomes transformative—or just another expensive feature. Across industries, companies are investing billions into artificial intelligence. Models are becoming smarter. Predictions are becoming faster. Automation is becoming more powerful.</p>
+          <p>Yet one truth remains unchanged: <strong>People don't adopt AI because it's intelligent. They adopt it because they trust it.</strong> Technology may impress users once. Trust keeps them coming back.</p>
+
+          <h2>AI Has a Trust Problem</h2>
+          <p>For decades, software behaved predictably. Click a button. Receive an expected result. AI changed that relationship. Instead of fixed rules, AI makes predictions. Instead of certainty, it provides probabilities. Instead of telling users exactly what happened, it often says, <em>"Based on the available information..."</em></p>
+          <p>While technically impressive, this creates uncertainty. Users begin asking questions:</p>
+          <ul>
+            <li>Why did the AI make this recommendation?</li>
+            <li>What data influenced the decision?</li>
+            <li>Is this information accurate?</li>
+            <li>Can I override it?</li>
+            <li>What happens if it's wrong?</li>
+          </ul>
+          <p>When these questions remain unanswered, confidence disappears. And without confidence, adoption fails.</p>
+
+          <h2>Intelligence Without Trust Is Just Automation</h2>
+          <p>Many AI products focus heavily on technical capability: Better models. Faster inference. Higher accuracy. Larger datasets. These achievements matter, but users rarely experience algorithms. They experience interfaces.</p>
+          <p>A manufacturing supervisor doesn't care whether the model uses deep neural networks. A doctor doesn't care about transformer architecture. A financial analyst doesn't celebrate improved embeddings. They care about one thing: <strong>Can I confidently make decisions using this system?</strong> If the answer is no, even the smartest AI becomes irrelevant.</p>
+
+          <h2>Trust Begins With Transparency</h2>
+          <p>One of the biggest mistakes in AI design is hiding the reasoning. Users receive an answer—but never understand how it was generated.</p>
+          <p>Imagine a quality inspection dashboard simply displaying: <strong>"Defect Probability: 92%"</strong>. Useful? Not really. Now imagine it says:</p>
+          <blockquote>
+            "Defect Probability: 92%<br><br>
+            Based on:<br>
+            • Increased vibration during the last three production cycles<br>
+            • Temperature exceeding recommended limits<br>
+            • Similar defect patterns detected in previous batches"
+          </blockquote>
+          <p>The prediction hasn't changed. But trust has. Because users understand the reasoning. Transparency doesn't reveal every mathematical calculation. It provides enough context for informed decisions.</p>
+
+          <h2>Good AI Explains. Great AI Educates.</h2>
+          <p>Every interaction teaches users how the system thinks. Instead of replacing human expertise, AI should strengthen it. Consider navigation apps. When they recommend an alternate route, they explain why: Traffic ahead. Road closure. Construction. The explanation makes the recommendation believable.</p>
+          <p>AI products deserve the same design philosophy. Every recommendation should answer: <em>"What happened?"</em>, <em>"Why?"</em>, and <em>"What should I do next?"</em></p>
+
+          <h2>Confidence Is Designed, Not Programmed</h2>
+          <p>Designers often think about usability. Can users complete tasks? Can they navigate efficiently? Can they find information? AI introduces another responsibility: Can users trust the outcome?</p>
+          <p>Trust comes from dozens of small design decisions: Showing confidence scores. Displaying supporting evidence. Providing historical comparisons. Allowing users to inspect data. Offering manual control. Acknowledging uncertainty. These details may seem minor. Together, they determine whether users rely on AI during critical decisions.</p>
+
+          <h2>Never Pretend AI Is Certain</h2>
+          <p>One of the most dangerous design mistakes is presenting uncertain predictions as facts. No AI is perfect. No model knows everything. Users already understand this. Ironically, admitting uncertainty often increases confidence.</p>
+          <p>Imagine two systems. System A says: <em>"Machine failure will occur tomorrow."</em> System B says: <em>"There is an 82% probability of bearing failure within 24 hours based on vibration trends."</em> Which feels more trustworthy? The second. Because honesty creates credibility. Confidence isn't pretending to know everything. It's clearly communicating what is known—and what isn't.</p>
+
+          <h2>Human Control Builds Better Trust</h2>
+          <p>People don't want AI to replace them. They want AI to support them. Designing effective AI means keeping humans involved. Recommendations should be reviewable. Actions should be reversible. Overrides should always be available.</p>
+          <p>The best AI behaves like an experienced teammate. It offers advice. Explains reasoning. Learns from feedback. Respects human judgment. When users feel in control, they become more willing to rely on AI.</p>
+
+          <h2>Trust Is Emotional</h2>
+          <p>We often discuss AI using technical language: Accuracy. Latency. Precision. Recall. Model performance. But trust is emotional. Users notice when an interface feels confusing. They notice inconsistent recommendations. They notice sudden changes. They notice hidden decisions. These moments create hesitation. Good UX removes hesitation before it appears. Trust grows through consistency: Predictable behavior. Clear language. Thoughtful interactions. Human-centered design.</p>
+
+          <h2>Designing for Failure Is Just as Important</h2>
+          <p>Eventually, every AI system will make mistakes. The real question isn't whether it fails. It's how it fails. Imagine asking an AI assistant a complex question. Instead of inventing an answer, it responds: <em>"I don't have enough reliable information to answer this confidently."</em> That response builds more trust than an incorrect answer delivered with certainty. Good AI knows its limits. Great AI communicates them.</p>
+
+          <h2>The Future Belongs to Trustworthy AI</h2>
+          <p>The next generation of AI won't be defined solely by larger models, or faster processors, or bigger datasets. It will be defined by experiences people feel comfortable using every day. The companies that succeed won't simply build intelligent systems. They'll build trustworthy ones.</p>
+          <p>That responsibility belongs to everyone: Researchers. Engineers. Product managers. UX writers. Developers. And especially designers. Because trust isn't added after development. It's designed from the very first wireframe.</p>
+
+          <h2>A Designer's New Responsibility</h2>
+          <p>UX has always been about helping people accomplish goals. AI expands that mission. Now designers must help people believe what they see. That requires empathy, curiosity, ethics, clear communication, and an understanding that every interface shapes human confidence.</p>
+          <p>The best AI experiences won't be remembered because they were the smartest. They'll be remembered because they made people feel informed, respected, and in control.</p>
+
+          <h2>Final Thought</h2>
+          <p>Artificial intelligence is changing how we work, learn, create, and solve problems. But intelligence alone isn't enough. Every recommendation, every prediction, every automation, and every conversation with AI asks users to take a leap of faith. Design determines how big that leap feels.</p>
+          <p>When AI is transparent, honest, explainable, and human-centered, people don't just use it. They trust it. And once trust is earned, technology stops feeling like software. It starts feeling like a reliable partner. In the age of AI, trust isn't a feature. <strong>It's the product.</strong></p>
+        `
+        },
+        '2': {
+          title: 'Building Design Systems for Enterprise Products',
+          category: 'Design Systems',
+          date: 'Apr 2026',
+          readtime: '6 min read',
+          image: 'img/blog/blog2 imge.png',
+          body: `
+          <p class="lead">Imagine joining a large enterprise project on your first day as a UX designer. You open the design files expecting a structured, organized workspace. Instead, you find hundreds of screens built by different designers over several years. There are six versions of the primary button. Three different date pickers. Multiple shades of blue representing the same action. Typography changes from one page to another. Spacing feels inconsistent. Nothing looks connected.</p>
+          
+          <p>Now imagine you're a developer trying to build these interfaces. Every screen requires new decisions. Every component behaves differently. Every release introduces new inconsistencies.</p>
+          <p>This is how many enterprise products evolve—not because designers lack skill, but because products grow faster than design standards. A design system changes that. It transforms design from creating individual screens into building a scalable product ecosystem.</p>
+
+          <h2>Enterprise Products Are Different</h2>
+          <p>Designing consumer apps is one challenge. Designing enterprise software is another. Enterprise applications often contain hundreds of workflows, thousands of screens, multiple user roles, complex business rules, years of product evolution, and large cross-functional teams.</p>
+          <p>Without consistency, every new feature increases design debt. Eventually, teams spend more time fixing inconsistencies than solving user problems. A design system prevents that cycle.</p>
+
+          <h2>A Design System Is Not a Component Library</h2>
+          <p>Many people believe a design system is simply a collection of buttons, cards, and input fields. It isn't. A component library is only one part of a design system.</p>
+          <p>A true design system includes: design principles, visual language, components, interaction patterns, accessibility guidelines, content standards, design tokens, documentation, and governance.</p>
+          <blockquote>"A component library tells designers <strong>what to use.</strong> A design system explains <strong>why it exists and when to use it.</strong> That difference is what creates consistency."</blockquote>
+
+          <h2>Consistency Builds Trust</h2>
+          <p>Users don't consciously notice consistency. They notice inconsistency. When every page follows familiar patterns, users feel confident. Buttons behave as expected. Forms look predictable. Navigation remains familiar. Learning becomes easier.</p>
+          <p>Enterprise users spend hours every day inside software. Even tiny inconsistencies increase cognitive load. Consistency reduces mental effort, allowing users to focus on their work instead of figuring out the interface.</p>
+
+          <h2>Design Once, Use Everywhere</h2>
+          <p>One of the biggest advantages of a design system is reuse. Instead of redesigning a table every time a new dashboard is created, teams use an approved component. Instead of creating another modal, they use the existing pattern. Instead of debating spacing during every sprint, predefined design tokens handle it automatically.</p>
+          <p>This allows designers to spend less time recreating UI and more time solving real business problems.</p>
+
+          <h2>The Bridge Between Designers and Developers</h2>
+          <p>One of the biggest causes of inconsistent products is the gap between design and development. Designers create beautiful interfaces. Developers interpret them differently. Small differences accumulate over time.</p>
+          <p>A design system creates a shared language. When both teams use the same components, naming conventions, and documentation, implementation becomes faster and more accurate. Design stops being a handoff. It becomes collaboration.</p>
+
+          <h2>Scalability Is the Real Goal</h2>
+          <p>Imagine building a manufacturing platform with modules for procurement, inventory, quality inspection, warehouse management, analytics, and supplier collaboration. Each module has dozens of screens. Without a design system, every team builds independently. Within a year, the product feels like several different applications stitched together. A design system ensures every new module feels like part of the same product family. Growth becomes sustainable.</p>
+
+          <h2>Accessibility Should Never Be an Afterthought</h2>
+          <p>Enterprise software is used by people with different abilities, devices, and environments. Accessibility should be built into every component from the beginning. Buttons need sufficient contrast. Forms require proper labels. Keyboard navigation should work consistently. Screen readers must understand the interface. When accessibility is built into the design system, every product automatically becomes more inclusive.</p>
+
+          <h2>Documentation Is the Heart of Every Design System</h2>
+          <p>Even the best components fail if nobody knows how to use them. Documentation answers questions before they become problems. It explains when to use a component, when not to use it, interaction behavior, states and variants, accessibility requirements, code references, and best practices. Great documentation transforms a design system into a learning resource for the entire team.</p>
+
+          <h2>Governance Keeps the System Healthy</h2>
+          <p>A design system is never finished. Products evolve. Technology changes. Business needs shift. Without governance, duplicate components slowly return. Successful teams establish clear processes for proposing, reviewing, testing, and approving new patterns. This keeps the system consistent while allowing it to grow.</p>
+
+          <h2>Measuring Success</h2>
+          <p>A successful design system isn't measured by the number of components it contains. It's measured by the value it creates. We look at whether teams are designing faster, whether developers are shipping features more consistently, and whether accessibility has improved.</p>
+
+          <h2>The Future of Design Systems</h2>
+          <p>Artificial intelligence is beginning to reshape how design systems evolve. Imagine AI suggesting components based on context, automatically checking accessibility issues, generating documentation, and detecting inconsistent patterns. AI won't replace design systems—it will make them smarter. The foundation, however, remains the same: consistency, usability, and collaboration.</p>
+
+          <h2>Final Thoughts</h2>
+          <p>A design system is far more than a collection of reusable components. It is a shared language that connects designers, developers, product managers, and stakeholders. It reduces inconsistency, accelerates development, improves accessibility, and creates experiences users can trust.</p>
+          <p>Enterprise products are built to last for years. The strongest foundation isn't just good code or beautiful interfaces—it's a design system that allows every new feature, every new team member, and every new product module to feel like part of one unified experience. Because in enterprise design, success isn't measured by how many screens you create. It's measured by how consistently those screens work together.</p>
+        `
+        },
+        '3': {
+          title: 'How Research Shapes Better Product Decisions',
+          category: 'Research',
+          date: 'Feb 2026',
+          readtime: '5 min read',
+          image: 'img/blog/Gemini_Generated_Image_jgxygjgxygjgxygj.png',
+          body: `
+          <p class="lead">Imagine you're part of a product team preparing to launch a new feature. Months of planning have gone into it. Designs are polished. Development is complete. Marketing is ready. Everyone is excited. Launch day arrives. The feature goes live.</p>
+          
+          <p>A week later, analytics reveal a disappointing reality. Users barely interact with it. Support tickets increase. Adoption remains low.</p>
+          <p>The feature wasn't poorly designed. It was built to solve a problem users never had. This is one of the most expensive mistakes product teams make—not building the wrong feature, but building the wrong solution. That's where research changes everything.</p>
+
+          <h2>Research Is More Than Asking Questions</h2>
+          <p>Many people think research means conducting interviews or sending surveys. While those methods are valuable, research is much broader. It's the process of understanding how people think, behave, struggle, and make decisions.</p>
+          <p>Good research helps teams answer questions like:</p>
+          <ul>
+            <li>What problem are we solving?</li>
+            <li>Who experiences it most often?</li>
+            <li>How do users solve it today?</li>
+            <li>Why does the current experience fail?</li>
+            <li>What matters most to them?</li>
+          </ul>
+          <p>Research replaces assumptions with evidence.</p>
+
+          <h2>Every Product Decision Is a Business Decision</h2>
+          <p>A product decision isn't just about adding a feature. It affects engineering effort, design resources, development timelines, customer satisfaction, support costs, and revenue. Building the wrong feature doesn't just waste time—it consumes months of work across multiple teams. Research minimizes that risk by helping teams invest in problems that actually matter.</p>
+
+          <h2>Falling in Love with the Problem</h2>
+          <p>Product teams often fall in love with solutions: "We should build an AI assistant," "We need a dashboard," "Let's redesign the navigation." These ideas may sound exciting, but experienced product teams ask a different question first: <strong>What problem are we trying to solve?</strong></p>
+          <p>Research keeps teams focused on problems instead of features. When the problem is understood deeply, better solutions naturally emerge.</p>
+
+          <h2>Listening Beyond Words</h2>
+          <p>Users don't always describe their needs clearly. Sometimes they say one thing while doing another. Imagine a warehouse operator saying: <em>"The software is fine."</em> During observation, however, you notice they keep writing inventory numbers on paper before entering them into the system. The issue isn't the inventory feature. It's the confidence they have in the software.</p>
+          <p>Observation uncovers behaviors that interviews alone often miss. Great researchers don't just listen. They watch.</p>
+
+          <h2>Data Tells You What. Research Tells You Why.</h2>
+          <p>Analytics are powerful. They show where users click, how long they stay, where they abandon workflows, and which features they use. But numbers rarely explain motivation.</p>
+          <p>Imagine analytics showing that 70% of users abandon a purchase workflow. The data tells you <strong>what happened.</strong> Research reveals <strong>why.</strong> Maybe users don't understand pricing, maybe they're confused by the form, or maybe trust is missing. Without understanding the "why," teams risk solving the wrong problem.</p>
+
+          <h2>Research Creates Shared Understanding</h2>
+          <p>One overlooked benefit of research is alignment. When designers, developers, product managers, and stakeholders observe the same user interview, conversations change. Instead of debating opinions, teams discuss evidence.</p>
+          <p>The conversation shifts from "I think users want this" to "The research showed users struggled with this task." Research becomes a common language that brings cross-functional teams together.</p>
+
+          <h2>Enterprise Products Need Even More Research</h2>
+          <p>Consumer products often have millions of users generating continuous feedback. Enterprise software is different. A manufacturing platform may have only a few thousand users, but each workflow is complex and business-critical. Mistakes are expensive.</p>
+          <p>Research helps teams understand different user roles, operational workflows, business constraints, compliance requirements, and daily frustrations. Without research, enterprise products become collections of features rather than tools that solve real work.</p>
+
+          <h2>Research Builds Empathy</h2>
+          <p>Empathy isn't simply caring about users. It's understanding their context. Consider a quality inspector working on a noisy factory floor. They wear gloves, move constantly, use tablets in bright lighting, and work under strict production targets. Designing from an office without understanding that environment often leads to poor decisions. Research brings teams into the user's world, and empathy leads to better design.</p>
+
+          <h2>Research Is Continuous</h2>
+          <p>Many teams treat research as something done before development begins. In reality, research should continue throughout the product lifecycle: before design it identifies opportunities, during design it validates concepts, before launch it uncovers usability issues, and after release it measures success. Research isn't a phase—it's an ongoing conversation with users.</p>
+
+          <h2>Small Insights Create Big Impact</h2>
+          <p>Not every research finding leads to a major redesign. Sometimes the smallest observations create the biggest improvements: a confusing button label, an unclear error message, an unnecessary approval step, or a hidden search function. These seemingly minor issues often affect thousands of users every day. Removing friction creates measurable business value.</p>
+
+          <h2>Research Helps Teams Say "No"</h2>
+          <p>One of the hardest responsibilities in product development is deciding what not to build. Every stakeholder has ideas, customers request features, executives have priorities, sales teams make promises. Research provides an objective way to prioritize. Instead of asking "Who requested this?", teams ask: "Does evidence show this solves a meaningful user problem?" That's how research protects product strategy.</p>
+
+          <h2>Measuring Research Success</h2>
+          <p>Good research isn't measured by the number of interviews completed. It's measured by the quality of decisions it influences. Success looks like: higher feature adoption, faster task completion, lower support requests, improved customer satisfaction, better accessibility, reduced development waste, and stronger business outcomes.</p>
+
+          <h2>The Future of Product Research</h2>
+          <p>Artificial intelligence is transforming how research is conducted. AI can summarize interviews, identify recurring themes, cluster qualitative insights, analyze sentiment, generate research reports, and speed up synthesis. But AI cannot replace curiosity, or observing people in context, or empathy. The best product teams will combine AI-powered efficiency with human understanding.</p>
+
+          <h2>Final Thoughts</h2>
+          <p>The best products aren't built by guessing what users need. They're built by understanding how people work, think, struggle, and succeed. Research gives teams the confidence to make decisions based on evidence instead of assumptions. It reduces risk, strengthens collaboration, builds empathy, and ensures every feature serves a real purpose.</p>
+          <p>In a world where technology evolves rapidly, research remains one of the few competitive advantages that cannot be copied. Because competitors can replicate features, match technology, or imitate interfaces, but they cannot easily replicate a deep understanding of your users. The most successful products aren't created by building more—they are created by learning more. And every great product begins with one simple act: <strong>Listening.</strong></p>
+        `
+        }
+      };
+
+      // ── URL Routing ──
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('post');
+
+      if (postId && posts[postId]) {
+        // Post Detail View
+        const post = posts[postId];
+        $('#post-title').text(post.title);
+        $('#post-cat').text(post.category);
+        $('#post-date').text(post.date);
+        $('#post-readtime').text(post.readtime);
+        $('#post-img').attr('src', post.image);
+        $('#post-body').html(post.body);
+
+        // Render Read Next items
+        let readNextHtml = '';
+        Object.keys(posts).forEach(key => {
+          if (key !== postId) {
+            const item = posts[key];
+            readNextHtml += `
+            <div class="blog-card" onclick="window.location.href='blog.html?post=${key}'">
+              <img class="blog-img" src="${item.image}" alt="">
+              <div class="blog-body">
+                <div class="blog-cat">${item.category}</div>
+                <div class="blog-title">${item.title}</div>
+                <div class="blog-date">${item.date} · ${item.readtime}</div>
+              </div>
+            </div>
+          `;
+          }
+        });
+        $('#read-next-grid').html(readNextHtml);
+        $('#post-view').show();
+        document.title = post.title + ' — UX Thinking';
+      } else {
+        // Listing View
+        let listHtml = '';
+        Object.keys(posts).forEach((key, index) => {
+          const item = posts[key];
+          const isFeatured = index === 0 ? 'featured' : '';
+          listHtml += `
+          <div class="blog-card ${isFeatured}" onclick="window.location.href='blog.html?post=${key}'">
+            <img class="blog-img" src="${item.image}" alt="">
+            <div class="blog-body">
+              <div class="blog-cat">${item.category}</div>
+              <div class="blog-title">${item.title}</div>
+              <div class="blog-date">${item.date} · ${item.readtime}</div>
+            </div>
+          </div>
+        `;
+        });
+        $('#blog-list-grid').html(listHtml);
+        $('#listing-view').show();
+        document.title = 'UX Thinking — Arvind Kiran';
+      }
+
+      // Custom Cursor Growth Effect
+      $('a, button, .blog-card, .back-link').on('mouseenter', function () {
+        $('body').addClass('cur-grow');
+      }).on('mouseleave', function () {
+        $('body').removeClass('cur-grow');
+      });
+
+      // Custom Cursor movement mirroring (fallbacks for default cursor overlay elements)
+      $(document).on('mousemove', function (e) {
+        $('#cur').css({ left: e.clientX, top: e.clientY });
+        setTimeout(() => $('#cur-r').css({ left: e.clientX, top: e.clientY }), 70);
+      });
+    });
+  </script>
+
+</body>
+
+</html>
