@@ -239,3 +239,22 @@ body.blog-page .v-line {
     height: 240px;
   }
 }
+
+@media (max-width: 480px) {
+  .blog-post-title {
+    font-size: 2.2rem !important;
+  }
+  body.blog-page {
+    padding-top: 60px !important;
+  }
+  .blog-listing-title {
+    font-size: 2.5rem !important;
+  }
+  .blog-content-wrap {
+    padding: 1.5rem 1rem !important;
+  }
+  .blog-post-hero-img-wrap {
+    height: 180px !important;
+    margin-bottom: 2rem !important;
+  }
+}

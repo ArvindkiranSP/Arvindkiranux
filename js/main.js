@@ -23,7 +23,18 @@ $(function() {
   let cur = 0, total = 9, busy = false;
 
   window.goTo = function(idx) {
-    if (busy || idx===cur || idx<0 || idx>=total) return;
+    if (idx<0 || idx>=total) return;
+    if (window.innerWidth <= 900) {
+      const target = $('#s'+idx);
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top - 70
+        }, 600);
+      }
+      cur = idx;
+      return;
+    }
+    if (busy || idx===cur) return;
     busy = true;
     const dir = idx > cur ? 1 : -1;
     const $old = $('#s'+cur);
@@ -65,24 +76,46 @@ $(function() {
     }
   }
 
+  /* Trigger stats animations on mobile when scrolled into view */
+  if (window.innerWidth <= 900) {
+    const statsSec = document.getElementById('s6');
+    if (statsSec) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            onActive(6);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(statsSec);
+    }
+  }
+
   /* nav dots */
   $('.snav-item').on('click',function(){ goTo(parseInt($(this).data('s'))); });
 
   /* wheel */
   let wt=0;
   $(window).on('wheel',function(e){
+    if (window.innerWidth <= 900) return;
     const now=Date.now(); if(now-wt<850)return; wt=now;
     if(e.originalEvent.deltaY>0) goTo(cur+1); else goTo(cur-1);
   });
   /* touch */
   let ty=0;
-  $(document).on('touchstart',e=>ty=e.originalEvent.touches[0].clientY);
+  $(document).on('touchstart',e=>{
+    if (window.innerWidth <= 900) return;
+    ty=e.originalEvent.touches[0].clientY;
+  });
   $(document).on('touchend',function(e){
+    if (window.innerWidth <= 900) return;
     const d=ty-e.originalEvent.changedTouches[0].clientY;
     if(Math.abs(d)>40){ d>0?goTo(cur+1):goTo(cur-1); }
   });
   /* keyboard */
   $(document).on('keydown',function(e){
+    if (window.innerWidth <= 900) return;
     if(e.key==='ArrowDown'||e.key==='PageDown') goTo(cur+1);
     if(e.key==='ArrowUp'||e.key==='PageUp') goTo(cur-1);
     const n=parseInt(e.key); if(n>=1&&n<=total) goTo(n-1);

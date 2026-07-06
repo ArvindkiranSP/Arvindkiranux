@@ -271,6 +271,30 @@ body.work-detail-page .v-line {
   .work-hero-img-wrap {
     height: 280px;
   }
+  .tv-cards {
+    grid-template-columns: 1fr !important;
+  }
+  .tv-frame {
+    padding: 15px 18px !important;
+  }
+  .votes {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-meta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+  }
+  .work-title-main {
+    font-size: 2.2rem !important;
+  }
+  body.work-detail-page {
+    padding-top: 60px !important;
+  }
 }
 
 .case-study-img,
@@ -523,6 +547,9 @@ body.work-detail-page .v-line {
   width: 100%;
   border-collapse: collapse;
   margin: 24px 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .case-study-section th,
 .case-study-section td {
