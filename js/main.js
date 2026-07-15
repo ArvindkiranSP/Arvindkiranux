@@ -24,41 +24,21 @@ $(function() {
 
   window.goTo = function(idx) {
     if (idx<0 || idx>=total) return;
-    if (window.innerWidth <= 900) {
-      const target = $('#s'+idx);
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top - 70
-        }, 600);
-      }
-      cur = idx;
-      return;
+    const target = $('#s'+idx);
+    if (target.length) {
+      const offset = window.innerWidth <= 900 ? 70 : 80;
+      busy = true;
+      $('html, body').stop().animate({
+        scrollTop: target.offset().top - offset
+      }, 700, 'swing', function() {
+        busy = false;
+        onActive(idx);
+      });
     }
-    if (busy || idx===cur) return;
-    busy = true;
-    const dir = idx > cur ? 1 : -1;
-    const $old = $('#s'+cur);
-    const $new = $('#s'+idx);
-
-    gsap.to($old.find('.sec-inner'), {
-      y: dir*-55, opacity:0, duration:.38, ease:'power2.in',
-      onComplete:()=>{
-        $old.removeClass('active');
-        gsap.set($old.find('.sec-inner'),{y:0,opacity:1});
-      }
-    });
-
-    $new.addClass('active');
-    gsap.fromTo($new.find('.sec-inner'),
-      {y:dir*65,opacity:0},
-      {y:0,opacity:1,duration:.6,ease:'power3.out',delay:.2,
-       onComplete:()=>{ busy=false; onActive(idx); }}
-    );
-
+    cur = idx;
     $('.snav-item').removeClass('active');
     $('[data-s="'+idx+'"]').addClass('active');
     $('#cur-num').text(String(idx+1).padStart(2,'0'));
-    cur = idx;
   };
 
   function onActive(idx) {
@@ -76,46 +56,51 @@ $(function() {
     }
   }
 
-  /* Trigger stats animations on mobile when scrolled into view */
-  if (window.innerWidth <= 900) {
-    const statsSec = document.getElementById('s6');
-    if (statsSec) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            onActive(6);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      observer.observe(statsSec);
-    }
+  /* Trigger stats animations when scrolled into view */
+  const statsSec = document.getElementById('s6');
+  if (statsSec) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          onActive(6);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(statsSec);
   }
 
   /* nav dots */
   $('.snav-item').on('click',function(){ goTo(parseInt($(this).data('s'))); });
 
-  /* wheel */
-  let wt=0;
-  $(window).on('wheel',function(e){
-    if (window.innerWidth <= 900) return;
-    const now=Date.now(); if(now-wt<850)return; wt=now;
-    if(e.originalEvent.deltaY>0) goTo(cur+1); else goTo(cur-1);
+  /* ── Navigation Highlighting on Scroll ── */
+  let scrollTimeout;
+  $(window).on('scroll', function() {
+    if (busy) return;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+      const scrollPos = $(window).scrollTop() + window.innerHeight / 3;
+      $('.section').each(function() {
+        const id = $(this).attr('id');
+        const top = $(this).offset().top;
+        const height = $(this).outerHeight();
+        if (scrollPos >= top && scrollPos < top + height) {
+          const idx = parseInt(id.replace('s', ''));
+          if (idx !== cur) {
+            $('.snav-item').removeClass('active');
+            $('[data-s="'+idx+'"]').addClass('active');
+            $('#cur-num').text(String(idx+1).padStart(2,'0'));
+            cur = idx;
+            onActive(idx);
+          }
+        }
+      });
+    }, 50);
   });
-  /* touch */
-  let ty=0;
-  $(document).on('touchstart',e=>{
-    if (window.innerWidth <= 900) return;
-    ty=e.originalEvent.touches[0].clientY;
-  });
-  $(document).on('touchend',function(e){
-    if (window.innerWidth <= 900) return;
-    const d=ty-e.originalEvent.changedTouches[0].clientY;
-    if(Math.abs(d)>40){ d>0?goTo(cur+1):goTo(cur-1); }
-  });
-  /* keyboard */
+
+  /* keyboard navigation */
   $(document).on('keydown',function(e){
-    if (window.innerWidth <= 900) return;
+    if ($(e.target).is('input, textarea')) return;
     if(e.key==='ArrowDown'||e.key==='PageDown') goTo(cur+1);
     if(e.key==='ArrowUp'||e.key==='PageUp') goTo(cur-1);
     const n=parseInt(e.key); if(n>=1&&n<=total) goTo(n-1);

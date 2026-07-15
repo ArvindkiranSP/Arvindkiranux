@@ -24,12 +24,26 @@
 html,
 body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
   background: var(--black);
   color: var(--white);
   font-family: "DM Sans", sans-serif;
   cursor: none;
+  overflow-x: hidden;
+}
+
+/* Premium styled scrollbar for body */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
 }
 
 /* ── Cursor ── */
@@ -366,15 +380,15 @@ body {
 
 /* ── SECTIONS ── */
 .section {
-  position: fixed;
-  inset: 0;
+  position: relative;
+  min-height: 100vh;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  will-change: opacity, transform;
+  opacity: 1;
+  pointer-events: all;
+  padding: 6rem 2rem;
 }
 
 .section.active {
@@ -788,24 +802,6 @@ body {
   max-width: 1040px;
   width: 100%;
   padding: 0 1.5rem;
-  max-height: 80vh;
-  overflow-y: auto;
-  padding-right: 1.5rem;
-}
-
-/* Styled scrollbar for work-layout */
-.work-layout::-webkit-scrollbar {
-  width: 6px;
-}
-.work-layout::-webkit-scrollbar-track {
-  background: rgba(3, 5, 10, 0.2);
-}
-.work-layout::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
-}
-.work-layout::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
 }
 
 .work-header {
@@ -840,19 +836,19 @@ body {
 }
 
 .proj-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
 .proj-row {
-  display: grid;
-  grid-template-columns: 60px 1fr auto auto;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 4px;
   background: var(--panel);
   backdrop-filter: blur(10px);
   cursor: pointer;
@@ -866,79 +862,112 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
-  width: 2px;
+  right: 0;
+  height: 2px;
   background: var(--gold);
-  transform: scaleY(0);
-  transform-origin: bottom;
+  transform: scaleX(0);
+  transform-origin: left;
   transition: transform 0.35s;
+  z-index: 4;
 }
 
 .proj-row:hover::before {
-  transform: scaleY(1);
+  transform: scaleX(1);
 }
 
 .proj-row:hover {
   border-color: rgba(201, 168, 76, 0.35);
   background: rgba(201, 168, 76, 0.05);
-  transform: translateX(4px);
+  transform: translateY(-4px);
 }
 
 .proj-num {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: var(--gold3);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 3;
+  background: rgba(8, 13, 23, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.05em;
 }
 
 .proj-thumb {
-  width: 72px;
-  height: 50px;
+  width: 100%;
+  height: 180px;
   object-fit: cover;
-  border-radius: 1px;
-  filter: brightness(0.8);
-  transition: filter 0.3s;
+  border-radius: 0;
+  filter: brightness(0.75) grayscale(0.15);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  border-bottom: 1px solid var(--border);
 }
 
 .proj-row:hover .proj-thumb {
-  filter: brightness(1);
+  filter: brightness(1) grayscale(0);
+  transform: scale(1.03);
 }
 
-.proj-info {}
+.proj-info {
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-right: 2.5rem;
+}
 
 .proj-name {
   font-family: "Cormorant Garamond", serif;
-  font-size: 1.15rem;
-  font-weight: 400;
-  margin-bottom: 0.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.1rem;
 }
 
 .proj-cat {
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
+  line-height: 1.4;
 }
 
 .proj-year {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  background: rgba(8, 13, 23, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  border: 1px solid var(--border);
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--muted);
 }
 
 .proj-arrow {
-  font-size: 1rem;
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.1rem;
   color: var(--gold);
   opacity: 0;
-  transform: translateX(-6px);
-  transition: all 0.3s;
+  transform: translate(-5px, 5px);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .proj-row:hover .proj-arrow {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, 0);
 }
 
 /* ── Preview Grid Styles ── */
@@ -947,24 +976,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
   margin-top: 2rem;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-}
-
-/* Scrollbar styling matching the premium dark theme for preview-grid */
-.preview-grid::-webkit-scrollbar {
-  width: 6px;
-}
-.preview-grid::-webkit-scrollbar-track {
-  background: rgba(3, 5, 10, 0.2);
-}
-.preview-grid::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
-}
-.preview-grid::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
 }
 
 .preview-card {
@@ -1179,7 +1190,7 @@ body {
   box-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
 }
 
-.proc-content {}
+
 
 .proc-title {
   font-family: "Cormorant Garamond", serif;
@@ -1361,7 +1372,7 @@ body {
   gap: 1.5rem 4rem;
 }
 
-.sk-row {}
+
 
 .sk-head {
   display: flex;
@@ -1487,7 +1498,7 @@ body {
   align-items: start;
 }
 
-.contact-left {}
+
 
 .contact-big {
   font-family: "Cormorant Garamond", serif;
@@ -1536,7 +1547,7 @@ body {
   color: var(--gold);
 }
 
-.contact-form {}
+
 
 .cf2 {
   width: 100%;
@@ -1753,20 +1764,13 @@ textarea.cf2 {
     gap: 3rem !important;
   }
 
-  .proj-row {
-    grid-template-columns: 30px 1fr auto !important;
-    gap: 1rem !important;
-    padding: 1rem !important;
-  }
-
-  .proj-thumb {
-    display: none !important;
+  .proj-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.2rem !important;
   }
 
   .preview-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    max-height: none !important;
-    overflow-y: visible !important;
   }
 }
 
@@ -1817,23 +1821,9 @@ textarea.cf2 {
     border-bottom: none !important;
   }
 
-  .proj-row {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.5rem !important;
-  }
-
-  .proj-num {
-    display: none !important;
-  }
-
-  .proj-year {
-    margin-left: 0 !important;
-  }
-
-  .proj-arrow {
-    display: none !important;
+  .proj-list {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
   }
 
   .proc-step {
