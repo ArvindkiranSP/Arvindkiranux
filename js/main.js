@@ -20,7 +20,7 @@ $(function() {
   tick(); setInterval(tick, 1000);
 
   /* ── Navigation ── */
-  let cur = 0, total = 9, busy = false;
+  let cur = 0, total = 10, busy = false;
 
   window.goTo = function(idx) {
     if (idx<0 || idx>=total) return;
@@ -39,6 +39,21 @@ $(function() {
     $('.snav-item').removeClass('active');
     $('[data-s="'+idx+'"]').addClass('active');
     $('#cur-num').text(String(idx+1).padStart(2,'0'));
+    
+    // Highlight topbar links
+    $('.nav-link').removeClass('active');
+    let topIdx = -1;
+    if (idx === 0) topIdx = 0;
+    else if (idx === 1) topIdx = 1;
+    else if (idx === 2) topIdx = 2;
+    else if (idx === 3) topIdx = 3;
+    else if (idx === 4) topIdx = 4;
+    else if (idx === 5) topIdx = 5;
+    else if (idx === 8) topIdx = 6;
+    else if (idx === 9) topIdx = 7;
+    if (topIdx !== -1) {
+      $('.nav-links .nav-link').eq(topIdx).addClass('active');
+    }
   };
 
   function onActive(idx) {
@@ -92,6 +107,21 @@ $(function() {
             $('#cur-num').text(String(idx+1).padStart(2,'0'));
             cur = idx;
             onActive(idx);
+            
+            // Highlight topbar links
+            $('.nav-link').removeClass('active');
+            let topIdx = -1;
+            if (idx === 0) topIdx = 0;
+            else if (idx === 1) topIdx = 1;
+            else if (idx === 2) topIdx = 2;
+            else if (idx === 3) topIdx = 3;
+            else if (idx === 4) topIdx = 4;
+            else if (idx === 5) topIdx = 5;
+            else if (idx === 8) topIdx = 6;
+            else if (idx === 9) topIdx = 7;
+            if (topIdx !== -1) {
+              $('.nav-links .nav-link').eq(topIdx).addClass('active');
+            }
           }
         }
       });
@@ -104,6 +134,21 @@ $(function() {
     if(e.key==='ArrowDown'||e.key==='PageDown') goTo(cur+1);
     if(e.key==='ArrowUp'||e.key==='PageUp') goTo(cur-1);
     const n=parseInt(e.key); if(n>=1&&n<=total) goTo(n-1);
+  });
+
+  /* ── FAQ Accordion ── */
+  $('.faq-header').on('click', function() {
+    const $item = $(this).closest('.faq-item');
+    const $content = $item.find('.faq-content');
+    const isActive = $item.hasClass('active');
+
+    // Close other items
+    $('.faq-item').removeClass('active').find('.faq-content').slideUp(300);
+
+    if (!isActive) {
+      $item.addClass('active');
+      $content.slideDown(300);
+    }
   });
 
   /* ── Testimonial rotator ── */

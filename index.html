@@ -1,60 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arvind Kiran — Senior UX Designer & Product Designer</title>
 
-<!-- Bootstrap 5 -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="font/bootstrap-icons.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-<!-- style css -->
-<link rel="stylesheet" href="css/style.css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arvind Kiran — Senior UX Designer & Product Designer</title>
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="font/bootstrap-icons.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- style css -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-<div id="cur"></div>
-<div id="cur-r"></div>
+  <div id="cur"></div>
+  <div id="cur-r"></div>
 
-<!-- Background -->
-<div id="mesh">
-  <div class="mesh-blob mb1"></div>
-  <div class="mesh-blob mb2"></div>
-  <div class="mesh-blob mb3"></div>
-</div>
-<div class="bg-layer noise-layer"></div>
-<div class="bg-layer scan-lines"></div>
-<div id="vignette"></div>
-<div class="v-line vl1"></div>
-<div class="v-line vl2"></div>
-
-<!-- Topbar -->
-<div id="topbar">
-  <div class="logo">Arvind <em>&</em> Kiran</div>
-  <div class="top-right">
-    <div id="clock" class="top-time">00:00:00</div>
-   
+  <!-- Background -->
+  <div id="mesh">
+    <div class="mesh-blob mb1"></div>
+    <div class="mesh-blob mb2"></div>
+    <div class="mesh-blob mb3"></div>
   </div>
-</div>
+  <div class="bg-layer noise-layer"></div>
+  <div class="bg-layer scan-lines"></div>
+  <div id="vignette"></div>
+  <div class="v-line vl1"></div>
+  <div class="v-line vl2"></div>
 
-<!-- Side Nav -->
-<nav id="side-nav">
-  <div class="snav-item active" data-s="0"><div class="snav-tick"></div><div class="snav-label">Home</div></div>
-  <div class="snav-item" data-s="1"><div class="snav-tick"></div><div class="snav-label">About</div></div>
-  <div class="snav-item" data-s="2"><div class="snav-tick"></div><div class="snav-label">Work</div></div>
-  <div class="snav-item" data-s="3"><div class="snav-tick"></div><div class="snav-label">Expertise</div></div>
-  <div class="snav-item" data-s="4"><div class="snav-tick"></div><div class="snav-label">Process</div></div>
-  <div class="snav-item" data-s="5"><div class="snav-tick"></div><div class="snav-label">Clients</div></div>
-  <div class="snav-item" data-s="6"><div class="snav-tick"></div><div class="snav-label">Stats</div></div>
-  <div class="snav-item" data-s="7"><div class="snav-tick"></div><div class="snav-label">UX Thinking</div></div>
-  <div class="snav-item" data-s="8"><div class="snav-tick"></div><div class="snav-label">Contact</div></div>
-</nav>
+  <!-- Topbar -->
+  <div id="topbar">
+    <div class="logo" onclick="goTo(0)" style="cursor: pointer;">Arvind <em>&</em> Kiran</div>
+    <div class="nav-links">
+      <a class="nav-link" onclick="goTo(0)">Home</a>
+      <a class="nav-link" onclick="goTo(1)">About</a>
+      <a class="nav-link" onclick="goTo(2)">Work</a>
+      <a class="nav-link" onclick="goTo(3)">Expertise</a>
+      <a class="nav-link" onclick="goTo(4)">Process</a>
+      <a class="nav-link" onclick="goTo(5)">Reviews</a>
+      <a class="nav-link" onclick="goTo(8)">FAQ</a>
+      <a class="nav-link" onclick="goTo(9)">Contact</a>
+    </div>
+    <div class="top-right">
+      <a class="nav-cta" onclick="goTo(9)">Book a Call</a>
+      <a class="mobile-cta" onclick="goTo(9)">Talk</a>
+    </div>
+  </div>
 
-<!-- Bottom Bar -->
-<!--<div id="bottombar">
+  <!-- Side Nav -->
+  <nav id="side-nav">
+    <div class="snav-item active" data-s="0">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Home</div>
+    </div>
+    <div class="snav-item" data-s="1">
+      <div class="snav-tick"></div>
+      <div class="snav-label">About</div>
+    </div>
+    <div class="snav-item" data-s="2">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Work</div>
+    </div>
+    <div class="snav-item" data-s="3">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Expertise</div>
+    </div>
+    <div class="snav-item" data-s="4">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Process</div>
+    </div>
+    <div class="snav-item" data-s="5">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Reviews</div>
+    </div>
+    <div class="snav-item" data-s="6">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Stats</div>
+    </div>
+    <div class="snav-item" data-s="7">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Journal</div>
+    </div>
+    <div class="snav-item" data-s="8">
+      <div class="snav-tick"></div>
+      <div class="snav-label">FAQ</div>
+    </div>
+    <div class="snav-item" data-s="9">
+      <div class="snav-tick"></div>
+      <div class="snav-label">Contact</div>
+    </div>
+  </nav>
+
+  <!-- Bottom Bar -->
+  <!--<div id="bottombar">
   <div class="bottom-copy">© 2026 Arvindkiran — All Rights Reserved</div>
   <div class="section-counter"><span id="cur-num">01</span> / 09</div>
   <div class="bottom-socials">
@@ -65,466 +109,618 @@
   </div>
 </div> -->
 
-<!-- ═══════════════════════ SECTION 0 · HERO ═══════════════════════ -->
-<section class="section active" id="s0">
-  <div class="sec-inner hero-inner">
-    <div class="hero-eyebrow">Senior UX Designer &amp; Product Designer</div>
-    <h1 class="hero-name">
-      <span class="line1">Arvind</span>
-      <span class="line2">Kiran.</span>
-    </h1>
-    <p class="hero-sub">Designing intelligent experiences for millions of users. I design user-centered digital products that simplify complex problems through research, interaction design, and systems thinking — creating measurable business impact across enterprise, healthcare, and AI-powered platforms.</p>
-    <div class="hero-ctas">
-      <a class="btn-gold" onclick="goTo(2)">View Case Studies</a>
-      <a class="btn-ghost" onclick="goTo(8)">Let's Talk</a>
-      <a class="btn-ghost" href="Assets/UIUX Arvind kiran Resume .pdf" download="UIUX Arvind kiran Resume.pdf">My CV</a>
-    </div>
-    <div class="hero-tags">
-      <div class="hero-tag"><strong>5+</strong>Years Experience</div>
-      <div class="hero-tag"><strong>Enterprise</strong>Products</div>
-      <div class="hero-tag"><strong>AI-powered</strong>UX</div>
-      <div class="hero-tag"><strong>Design</strong>Systems</div>
-    </div>
-  
-  </div>
-</section>
+  <!-- ═══════════════════════ SECTION 0 · HERO ═══════════════════════ -->
+  <section class="section active" id="s0">
+    <div class="sec-inner hero-inner">
+      <div class="hero-eyebrow">Senior UX Designer &amp; Product Designer</div>
+      <h1 class="hero-name">
+        <span class="line1">Arvind</span>
+        <span class="line2">Kiran.</span>
+      </h1>
+      <p class="hero-sub">Designing intelligent experiences for millions of users. I design user-centered digital
+        products that simplify complex problems through research, interaction design, and systems thinking — creating
+        measurable business impact across enterprise, healthcare, and AI-powered platforms.</p>
+      <div class="hero-ctas">
+        <a class="btn-gold" onclick="goTo(2)">View Case Studies</a>
+        <a class="btn-ghost" onclick="goTo(8)">Let's Talk</a>
+        <a class="btn-ghost" href="Assets/UIUX Arvind kiran Resume .pdf" download="UIUX Arvind kiran Resume.pdf">My
+          CV</a>
+      </div>
+      <div class="hero-tags">
+        <div class="hero-tag"><strong>5+</strong>Years Experience</div>
+        <div class="hero-tag"><strong>Enterprise</strong>Products</div>
+        <div class="hero-tag"><strong>AI-powered</strong>UX</div>
+        <div class="hero-tag"><strong>Design</strong>Systems</div>
+      </div>
 
-<!-- ═══════════════════════ SECTION 1 · ABOUT ═══════════════════════ -->
-<section class="section" id="s1">
-  <div class="sec-inner">
-    <div class="about-layout">
-      <div class="about-photo-col">
-        <div class="photo-frame">
-          <img class="photo-img" src="img/Gemini_Generated_Image_8vr55k8vr55k8vr5.png" alt="Arvind Kiran">
-          <div class="photo-border-deco"></div>
-          <div class="photo-border-deco2"></div>
-          <div class="corner-deco"></div>
-        </div>
-        <div class="gold-tab">
-          <div class="gold-tab-num">5+</div>
-          <div class="gold-tab-label">Years Crafting</div>
-        </div>
-      </div>
-      <div>
-        <!-- <div class="kicker">Who I Am</div> -->
-        <div class="about-title">Designing products<br><span class="gold-span ital">people love</span><br>to use.</div>
-        <p class="about-body">I'm Arvind — a UX Designer with over five years of experience creating enterprise applications, healthcare platforms, and AI-powered digital products. My approach combines user research, interaction design, rapid prototyping, and design systems to deliver intuitive experiences that solve real business problems.<br><br>I believe great design isn't just visually appealing — it's measurable, inclusive, and driven by user needs.</p>
-        <div class="exp-row">
-          <div class="exp-item"><span class="exp-num">5+</span><span class="exp-lbl">Years Experience</span></div>
-          <div class="exp-item"><span class="exp-num">Enterprise</span><span class="exp-lbl">SaaS</span></div>
-          <div class="exp-item"><span class="exp-num">AI</span><span class="exp-lbl">Assisted Design</span></div>
-        </div>
-        <div class="tech-row">
-          <span class="tech-tag">Figma</span><span class="tech-tag">FigJam</span><span class="tech-tag">Miro</span>
-          <span class="tech-tag">Maze</span><span class="tech-tag">Jira</span><span class="tech-tag">Confluence</span>
-          <span class="tech-tag">Adobe CC</span><span class="tech-tag">ChatGPT</span><span class="tech-tag">Figma AI</span>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ SECTION 2 · WORK ═══════════════════════ -->
-<section class="section" id="s2">
-  <div class="sec-inner work-layout">
-    <div class="work-header">
-      <div>
-        <div class="kicker">Portfolio</div>
-        <div class="work-title">Featured <span class="ital gold-span">Case Studies</span></div>
-      </div>
-      <!--<a href="#" class="work-view-all">View All <i class="bi bi-arrow-right"></i></a>-->
-    </div>
-    <div class="proj-list">
-      <div class="proj-row" onclick="window.location.href='work.html?project=1'">
-        <span class="proj-num">01</span>
-        <img class="proj-thumb" src="img/blog/Rewatch.png" alt="">
-        <div class="proj-info">
-          <div class="proj-name">Rewatch</div>
-          <div class="proj-cat">AI-assisted discovery for shared living rooms (Google TV)</div>
+  <!-- ═══════════════════════ SECTION 1 · ABOUT ═══════════════════════ -->
+  <section class="section" id="s1">
+    <div class="sec-inner">
+      <div class="about-layout">
+        <div class="about-photo-col">
+          <div class="photo-frame">
+            <img class="photo-img" src="img/Gemini_Generated_Image_8vr55k8vr55k8vr5.png" alt="Arvind Kiran">
+            <div class="photo-border-deco"></div>
+            <div class="photo-border-deco2"></div>
+            <div class="corner-deco"></div>
+          </div>
+          <div class="gold-tab">
+            <div class="gold-tab-num">5+</div>
+            <div class="gold-tab-label">Years Crafting</div>
+          </div>
         </div>
-        <div class="proj-year">2026</div>
-        <i class="bi bi-arrow-up-right proj-arrow"></i>
-      </div>
-      <div class="proj-row" onclick="window.location.href='work.html?project=2'">
-        <span class="proj-num">02</span>
-        <img class="proj-thumb" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard.png" alt="">
-        <div class="proj-info">
-          <div class="proj-name">INSafe CRM</div>
-          <div class="proj-cat">Scalable Enterprise CRM &amp; Design System</div>
+        <div>
+          <!-- <div class="kicker">Who I Am</div> -->
+          <div class="about-title">Designing products<br><span class="gold-span ital">people love</span><br>to use.
+          </div>
+          <p class="about-body">I'm Arvind — a UX Designer with over five years of experience creating enterprise
+            applications, healthcare platforms, and AI-powered digital products. My approach combines user research,
+            interaction design, rapid prototyping, and design systems to deliver intuitive experiences that solve real
+            business problems.<br><br>I believe great design isn't just visually appealing — it's measurable, inclusive,
+            and driven by user needs.</p>
+          <div class="exp-row">
+            <div class="exp-item"><span class="exp-num">5+</span><span class="exp-lbl">Years Experience</span></div>
+            <div class="exp-item"><span class="exp-num">Enterprise</span><span class="exp-lbl">SaaS</span></div>
+            <div class="exp-item"><span class="exp-num">AI</span><span class="exp-lbl">Assisted Design</span></div>
+          </div>
+          <div class="tech-row">
+            <span class="tech-tag">Figma</span><span class="tech-tag">FigJam</span><span class="tech-tag">Miro</span>
+            <span class="tech-tag">Maze</span><span class="tech-tag">Jira</span><span class="tech-tag">Confluence</span>
+            <span class="tech-tag">Adobe CC</span><span class="tech-tag">ChatGPT</span><span class="tech-tag">Figma
+              AI</span>
+          </div>
         </div>
-        <div class="proj-year">2025</div>
-        <i class="bi bi-arrow-up-right proj-arrow"></i>
-      </div>
-      <div class="proj-row" onclick="window.location.href='work.html?project=3'">
-        <span class="proj-num">03</span>
-        <img class="proj-thumb" src="img/blog/TM UI/TM Arm rest UI Design.png" alt="">
-        <div class="proj-info">
-          <div class="proj-name">TM Project</div>
-          <div class="proj-cat">Smart Manufacturing &amp; Production Monitoring Platform</div>
-        </div>
-        <div class="proj-year">2024</div>
-        <i class="bi bi-arrow-up-right proj-arrow"></i>
-      </div>
-      <div class="proj-row" onclick="window.location.href='work.html?project=4'">
-        <span class="proj-num">04</span>
-        <img class="proj-thumb" src="img/portfolio/work4.jpg" alt="">
-        <div class="proj-info">
-          <div class="proj-name">Supplier Portal</div>
-          <div class="proj-cat">Information Architecture · Design System · Responsive Dashboard</div>
-        </div>
-        <div class="proj-year">2024</div>
-        <i class="bi bi-arrow-up-right proj-arrow"></i>
-      </div>
-      <div class="proj-row" onclick="window.location.href='work.html?project=5'">
-        <span class="proj-num">05</span>
-        <img class="proj-thumb" src="img/portfolio/work5.jpg" alt="">
-        <div class="proj-info">
-          <div class="proj-name">Healthcare Mobile App</div>
-          <div class="proj-cat">Mobile UX · Appointment Booking · Telemedicine</div>
-        </div>
-        <div class="proj-year">2023</div>
-        <i class="bi bi-arrow-up-right proj-arrow"></i>
-      </div>
-      <div class="proj-row" onclick="window.location.href='work.html?project=6'">
-        <span class="proj-num">06</span>
-        <img class="proj-thumb" src="img/Frame 1000004980.jpg" alt="">
-        <div class="proj-info">
-          <div class="proj-name">Food Waste Management App</div>
-          <div class="proj-cat">Mobile UX · Inventory Tracking · Community Sharing</div>
-        </div>
-        <div class="proj-year">2024</div>
-        <i class="bi bi-arrow-up-right proj-arrow"></i>
       </div>
     </div>
+  </section>
 
-    <div class="work-header" style="margin-top: 3.5rem;">
-      <div>
-        <div class="kicker">Creative Explorations</div>
-        <div class="work-title">Design &amp; <span class="ital gold-span">Concepts</span></div>
+  <!-- ═══════════════════════ SECTION 2 · WORK ═══════════════════════ -->
+  <section class="section" id="s2">
+    <div class="sec-inner work-layout">
+      <div class="work-header">
+        <div>
+          <div class="kicker">Portfolio</div>
+          <div class="work-title">Featured <span class="ital gold-span">Case Studies</span></div>
+        </div>
+        <!--<a href="#" class="work-view-all">View All <i class="bi bi-arrow-right"></i></a>-->
       </div>
-    </div>
+      <div class="proj-list">
+        <div class="proj-row" onclick="window.location.href='work.html?project=1'">
+          <span class="proj-num">01</span>
+          <img class="proj-thumb" src="img/blog/Rewatch.png" alt="">
+          <div class="proj-info">
+            <div class="proj-name">Rewatch</div>
+            <div class="proj-cat">AI-assisted discovery for shared living rooms (Google TV)</div>
+          </div>
+          <div class="proj-year">2026</div>
+          <i class="bi bi-arrow-up-right proj-arrow"></i>
+        </div>
+        <div class="proj-row" onclick="window.location.href='work.html?project=2'">
+          <span class="proj-num">02</span>
+          <img class="proj-thumb" src="img/blog/IMS (InSafe)/Design Enterprise CRM Dashboard.png" alt="">
+          <div class="proj-info">
+            <div class="proj-name">INSafe CRM</div>
+            <div class="proj-cat">Scalable Enterprise CRM &amp; Design System</div>
+          </div>
+          <div class="proj-year">2025</div>
+          <i class="bi bi-arrow-up-right proj-arrow"></i>
+        </div>
+        <div class="proj-row" onclick="window.location.href='work.html?project=3'">
+          <span class="proj-num">03</span>
+          <img class="proj-thumb" src="img/blog/TM UI/TM Arm rest UI Design.png" alt="">
+          <div class="proj-info">
+            <div class="proj-name">TM Project</div>
+            <div class="proj-cat">Smart Manufacturing &amp; Production Monitoring Platform</div>
+          </div>
+          <div class="proj-year">2024</div>
+          <i class="bi bi-arrow-up-right proj-arrow"></i>
+        </div>
+        <div class="proj-row" onclick="window.location.href='work.html?project=4'">
+          <span class="proj-num">04</span>
+          <img class="proj-thumb" src="img/portfolio/work4.jpg" alt="">
+          <div class="proj-info">
+            <div class="proj-name">Supplier Portal</div>
+            <div class="proj-cat">Information Architecture · Design System · Responsive Dashboard</div>
+          </div>
+          <div class="proj-year">2024</div>
+          <i class="bi bi-arrow-up-right proj-arrow"></i>
+        </div>
+        <div class="proj-row" onclick="window.location.href='work.html?project=5'">
+          <span class="proj-num">05</span>
+          <img class="proj-thumb" src="img/portfolio/work5.jpg" alt="">
+          <div class="proj-info">
+            <div class="proj-name">Healthcare Mobile App</div>
+            <div class="proj-cat">Mobile UX · Appointment Booking · Telemedicine</div>
+          </div>
+          <div class="proj-year">2023</div>
+          <i class="bi bi-arrow-up-right proj-arrow"></i>
+        </div>
+        <div class="proj-row" onclick="window.location.href='work.html?project=6'">
+          <span class="proj-num">06</span>
+          <img class="proj-thumb" src="img/Frame 1000004980.jpg" alt="">
+          <div class="proj-info">
+            <div class="proj-name">Food Waste Management App</div>
+            <div class="proj-cat">Mobile UX · Inventory Tracking · Community Sharing</div>
+          </div>
+          <div class="proj-year">2024</div>
+          <i class="bi bi-arrow-up-right proj-arrow"></i>
+        </div>
+      </div>
 
-    <div class="preview-grid" data-skip-splash-cursor>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/200457711/Advanced-Responsive-Website" target="_blank">
-          <img class="preview-img" src="img/Car.jpg" alt="Advanced Responsive Website" />
-          <div class="preview-overlay">
-            <span class="preview-title">Advanced Responsive Website</span>
-            <span class="preview-cat">Web Design &amp; Layout</span>
-          </div>
-        </a>
+      <div class="work-header" style="margin-top: 3.5rem;">
+        <div>
+          <div class="kicker">Creative Explorations</div>
+          <div class="work-title">Design &amp; <span class="ital gold-span">Concepts</span></div>
+        </div>
       </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/203438495/Home-Automation-System-UX-UI-Case-Stydy" target="_blank">
-          <img class="preview-img" src="img/bot.png" alt="Home Automation System UX/UI Case Study" />
-          <div class="preview-overlay">
-            <span class="preview-title">Home Automation System</span>
-            <span class="preview-cat">IoT UX/UI Case Study</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/204130375/Burger-Site" target="_blank">
-          <img class="preview-img" src="img/Burger site.png" alt="Burger Site" />
-          <div class="preview-overlay">
-            <span class="preview-title">Burger Site</span>
-            <span class="preview-cat">E-Commerce Web Concept</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/199989205/Branding-lays" target="_blank">
-          <img class="preview-img" src="img/Cover.jpg" alt="Lays Branding" />
-          <div class="preview-overlay">
-            <span class="preview-title">Lays Branding</span>
-            <span class="preview-cat">Graphic &amp; Brand Identity</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/201547117/STREM-Game-Store?" target="_blank">
-          <img class="preview-img" src="img/CP2077 Hover DS.png" alt="STREM Game Store" />
-          <div class="preview-overlay">
-            <span class="preview-title">STREM Game Store</span>
-            <span class="preview-cat">UI &amp; Storefront Design</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/199667329/Inventory-Management-system-Dashboard-UI" target="_blank">
-          <img class="preview-img" src="img/Frame 1.png" alt="Inventory Management System Dashboard UI" />
-          <div class="preview-overlay">
-            <span class="preview-title">Inventory Management System</span>
-            <span class="preview-cat">Enterprise Dashboard UI</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/195829229/Interior-designer-Landing-page" target="_blank">
-          <img class="preview-img" src="img/UI Interior designer.png" alt="Interior Designer Landing Page" />
-          <div class="preview-overlay">
-            <span class="preview-title">Interior Designer Landing Page</span>
-            <span class="preview-cat">Minimal Landing Page</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/198894437/NACHOS-Landing-Page" target="_blank">
-          <img class="preview-img" src="img/7712e7198894437(1).66488a73b9762.jpg" alt="NACHOS Landing Page" />
-          <div class="preview-overlay">
-            <span class="preview-title">NACHOS Landing Page</span>
-            <span class="preview-cat">Modern Marketing Landing Page</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/198094835/Burger-Animation" target="_blank">
-          <img class="preview-img" src="img/Burger animation.png" alt="Burger Animation" />
-          <div class="preview-overlay">
-            <span class="preview-title">Burger Animation</span>
-            <span class="preview-cat">3D Motion &amp; Interaction</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/198895931/Donet-Animation" target="_blank">
-          <img class="preview-img" src="img/Desktop - 1.png" alt="Donut Animation" />
-          <div class="preview-overlay">
-            <span class="preview-title">Donut Animation</span>
-            <span class="preview-cat">Interactive Web Animation</span>
-          </div>
-        </a>
-      </div>
-      <div class="preview-card">
-        <a href="https://www.behance.net/gallery/195831185/Vision-Pro-UI-Design" target="_blank">
-          <img class="preview-img" src="img/Vpro.png" alt="Vision Pro UI Design" />
-          <div class="preview-overlay">
-            <span class="preview-title">Vision Pro UI Design</span>
-            <span class="preview-cat">Spatial Computing UI</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════ SECTION 3 · EXPERTISE ═══════════════════════ -->
-<section class="section" id="s3">
-  <div class="sec-inner serv-layout">
-    <div class="kicker">Expertise</div>
-    <div class="big-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;">What I <span class="ital gold-span">bring</span> to the table</div>
-    <div class="serv-grid">
-      <div class="serv-cell">
-        <span class="serv-num">01</span>
-        <span class="serv-icon">✦</span>
-        <div class="serv-name">UX Research</div>
-        <div class="serv-desc">Planning, interviews, usability testing, affinity mapping, and actionable insights that drive informed design decisions.</div>
-      </div>
-      <div class="serv-cell">
-        <span class="serv-num">02</span>
-        <span class="serv-icon">⌬</span>
-        <div class="serv-name">Interaction Design</div>
-        <div class="serv-desc">User flows, wireframes, prototypes, and intuitive interactions for complex workflows that feel effortless.</div>
-      </div>
-      <div class="serv-cell">
-        <span class="serv-num">03</span>
-        <span class="serv-icon">◈</span>
-        <div class="serv-name">Product Design</div>
-        <div class="serv-desc">End-to-end product design from discovery to launch across web, mobile, and TV platforms.</div>
-      </div>
-      <div class="serv-cell">
-        <span class="serv-num">04</span>
-        <span class="serv-icon">⬡</span>
-        <div class="serv-name">Design Systems</div>
-        <div class="serv-desc">Scalable UI libraries, reusable components, accessibility standards, and Material Design implementation.</div>
-      </div>
-      <div class="serv-cell" style="border-right:none">
-        <span class="serv-num">05</span>
-        <span class="serv-icon">⊕</span>
-        <div class="serv-name">AI-assisted Design</div>
-        <div class="serv-desc">Using AI tools to accelerate research, ideation, prototyping, and content generation while keeping human-centered decision making.</div>
-      </div>
-      <div class="serv-cell" style="border-right:none">
-        <span class="serv-num">06</span>
-        <span class="serv-icon">❋</span>
-        <div class="serv-name">Cross-platform Experiences</div>
-        <div class="serv-desc">Designing seamless experiences across Web, Mobile, Tablet, TV, and Smart Devices with consistent quality.</div>
+      <div class="preview-grid" data-skip-splash-cursor>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/200457711/Advanced-Responsive-Website" target="_blank">
+            <img class="preview-img" src="img/Car.jpg" alt="Advanced Responsive Website" />
+            <div class="preview-overlay">
+              <span class="preview-title">Advanced Responsive Website</span>
+              <span class="preview-cat">Web Design &amp; Layout</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/203438495/Home-Automation-System-UX-UI-Case-Stydy" target="_blank">
+            <img class="preview-img" src="img/bot.png" alt="Home Automation System UX/UI Case Study" />
+            <div class="preview-overlay">
+              <span class="preview-title">Home Automation System</span>
+              <span class="preview-cat">IoT UX/UI Case Study</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/204130375/Burger-Site" target="_blank">
+            <img class="preview-img" src="img/Burger site.png" alt="Burger Site" />
+            <div class="preview-overlay">
+              <span class="preview-title">Burger Site</span>
+              <span class="preview-cat">E-Commerce Web Concept</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/199989205/Branding-lays" target="_blank">
+            <img class="preview-img" src="img/Cover.jpg" alt="Lays Branding" />
+            <div class="preview-overlay">
+              <span class="preview-title">Lays Branding</span>
+              <span class="preview-cat">Graphic &amp; Brand Identity</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/201547117/STREM-Game-Store?" target="_blank">
+            <img class="preview-img" src="img/CP2077 Hover DS.png" alt="STREM Game Store" />
+            <div class="preview-overlay">
+              <span class="preview-title">STREM Game Store</span>
+              <span class="preview-cat">UI &amp; Storefront Design</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/199667329/Inventory-Management-system-Dashboard-UI" target="_blank">
+            <img class="preview-img" src="img/Frame 1.png" alt="Inventory Management System Dashboard UI" />
+            <div class="preview-overlay">
+              <span class="preview-title">Inventory Management System</span>
+              <span class="preview-cat">Enterprise Dashboard UI</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/195829229/Interior-designer-Landing-page" target="_blank">
+            <img class="preview-img" src="img/UI Interior designer.png" alt="Interior Designer Landing Page" />
+            <div class="preview-overlay">
+              <span class="preview-title">Interior Designer Landing Page</span>
+              <span class="preview-cat">Minimal Landing Page</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/198894437/NACHOS-Landing-Page" target="_blank">
+            <img class="preview-img" src="img/7712e7198894437(1).66488a73b9762.jpg" alt="NACHOS Landing Page" />
+            <div class="preview-overlay">
+              <span class="preview-title">NACHOS Landing Page</span>
+              <span class="preview-cat">Modern Marketing Landing Page</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/198094835/Burger-Animation" target="_blank">
+            <img class="preview-img" src="img/Burger animation.png" alt="Burger Animation" />
+            <div class="preview-overlay">
+              <span class="preview-title">Burger Animation</span>
+              <span class="preview-cat">3D Motion &amp; Interaction</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/198895931/Donet-Animation" target="_blank">
+            <img class="preview-img" src="img/Desktop - 1.png" alt="Donut Animation" />
+            <div class="preview-overlay">
+              <span class="preview-title">Donut Animation</span>
+              <span class="preview-cat">Interactive Web Animation</span>
+            </div>
+          </a>
+        </div>
+        <div class="preview-card">
+          <a href="https://www.behance.net/gallery/195831185/Vision-Pro-UI-Design" target="_blank">
+            <img class="preview-img" src="img/Vpro.png" alt="Vision Pro UI Design" />
+            <div class="preview-overlay">
+              <span class="preview-title">Vision Pro UI Design</span>
+              <span class="preview-cat">Spatial Computing UI</span>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ SECTION 4 · PROCESS ═══════════════════════ -->
-<section class="section" id="s4">
-  <div class="sec-inner process-layout">
-    <div class="kicker">How I Work</div>
-    <div class="big-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;">My <span class="ital gold-span">Process</span></div>
-    <div class="process-steps">
-      <div class="proc-step">
-        <div class="proc-circle">01</div>
-        <div class="proc-content">
-          <div class="proc-title">Discover</div>
-          <div class="proc-desc">Stakeholder interviews, business goal alignment, and competitive analysis to understand the problem space thoroughly.</div>
-          <span class="proc-tag">Research · Stakeholder Interviews · Competitive Analysis</span>
+  <!-- ═══════════════════════ SECTION 3 · EXPERTISE ═══════════════════════ -->
+  <section class="section" id="s3">
+    <div class="sec-inner serv-layout">
+      <div class="kicker">Expertise</div>
+      <div class="big-title"
+        style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;">What I <span
+          class="ital gold-span">bring</span> to the table</div>
+      <div class="serv-grid">
+        <div class="serv-cell">
+          <span class="serv-num">01</span>
+          <span class="serv-icon">✦</span>
+          <div class="serv-name">UX Research</div>
+          <div class="serv-desc">Planning, interviews, usability testing, affinity mapping, and actionable insights that
+            drive informed design decisions.</div>
         </div>
-      </div>
-      <div class="proc-step">
-        <div class="proc-circle">02</div>
-        <div class="proc-content">
-          <div class="proc-title">Define</div>
-          <div class="proc-desc">Synthesizing insights into user journeys, personas, problem statements, and information architecture.</div>
-          <span class="proc-tag">User Journey · Personas · Information Architecture</span>
+        <div class="serv-cell">
+          <span class="serv-num">02</span>
+          <span class="serv-icon">⌬</span>
+          <div class="serv-name">Interaction Design</div>
+          <div class="serv-desc">User flows, wireframes, prototypes, and intuitive interactions for complex workflows
+            that feel effortless.</div>
         </div>
-      </div>
-      <div class="proc-step">
-        <div class="proc-circle">03</div>
-        <div class="proc-content">
-          <div class="proc-title">Design</div>
-          <div class="proc-desc">Wireframes, interaction design, high-fidelity UI, and interactive prototypes grounded in real design systems.</div>
-          <span class="proc-tag">Wireframes · High-Fidelity UI · Prototyping · Design Systems</span>
+        <div class="serv-cell">
+          <span class="serv-num">03</span>
+          <span class="serv-icon">◈</span>
+          <div class="serv-name">Product Design</div>
+          <div class="serv-desc">End-to-end product design from discovery to launch across web, mobile, and TV
+            platforms.</div>
         </div>
-      </div>
-      <div class="proc-step">
-        <div class="proc-circle">04</div>
-        <div class="proc-content">
-          <div class="proc-title">Validate</div>
-          <div class="proc-desc">Usability testing, accessibility review, iterative refinement, and seamless developer handoff to ensure quality delivery.</div>
-          <span class="proc-tag">Usability Testing · Accessibility · Iteration · Developer Handoff</span>
+        <div class="serv-cell">
+          <span class="serv-num">04</span>
+          <span class="serv-icon">⬡</span>
+          <div class="serv-name">Design Systems</div>
+          <div class="serv-desc">Scalable UI libraries, reusable components, accessibility standards, and Material
+            Design implementation.</div>
+        </div>
+        <div class="serv-cell" style="border-right:none">
+          <span class="serv-num">05</span>
+          <span class="serv-icon">⊕</span>
+          <div class="serv-name">AI-assisted Design</div>
+          <div class="serv-desc">Using AI tools to accelerate research, ideation, prototyping, and content generation
+            while keeping human-centered decision making.</div>
+        </div>
+        <div class="serv-cell" style="border-right:none">
+          <span class="serv-num">06</span>
+          <span class="serv-icon">❋</span>
+          <div class="serv-name">Cross-platform Experiences</div>
+          <div class="serv-desc">Designing seamless experiences across Web, Mobile, Tablet, TV, and Smart Devices with
+            consistent quality.</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ SECTION 5 · TESTIMONIALS ═══════════════════════ -->
-<section class="section" id="s5">
-  <div class="sec-inner testi-layout">
-    <div class="kicker" style="justify-content:center;">Client Words</div>
-    <div class="big-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin-bottom:2rem;">What <span class="ital gold-span">they</span> say</div>
-    <span class="quote-mark">"</span>
-    <div class="testi-cards">
-      <div class="testi-card active">
-        <div class="testi-quote">Arvind didn't just build our product — he redefined how we think about design. The interface he created increased our conversion rate by 340%. Working with him is an unfair advantage.</div>
-        <div class="testi-author">Marcus Venn</div>
-        <div class="testi-role">CEO, Luminary Technologies</div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">We've worked with many agencies over the years. Arvind's ability to translate complex business logic into beautiful, intuitive UI is genuinely rare. He's in a different league.</div>
-        <div class="testi-author">Priya Kohli</div>
-        <div class="testi-role">CPO, Pulse Finance</div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">Delivered ahead of schedule, exceeded every spec, and the code was so clean our in-house team applauded. If you get the chance to work with Arvind, take it immediately.</div>
-        <div class="testi-author">James Calloway</div>
-        <div class="testi-role">Founder, Apex Studio</div>
+  <!-- ═══════════════════════ SECTION 4 · PROCESS ═══════════════════════ -->
+  <section class="section" id="s4">
+    <div class="sec-inner process-layout">
+      <div class="kicker">How I Work</div>
+      <div class="big-title"
+        style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;">My <span
+          class="ital gold-span">Process</span></div>
+      <div class="process-steps">
+        <div class="proc-step">
+          <div class="proc-circle">01</div>
+          <div class="proc-content">
+            <div class="proc-title">Discover</div>
+            <div class="proc-desc">Stakeholder interviews, business goal alignment, and competitive analysis to
+              understand the problem space thoroughly.</div>
+            <span class="proc-tag">Research · Stakeholder Interviews · Competitive Analysis</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-circle">02</div>
+          <div class="proc-content">
+            <div class="proc-title">Define</div>
+            <div class="proc-desc">Synthesizing insights into user journeys, personas, problem statements, and
+              information architecture.</div>
+            <span class="proc-tag">User Journey · Personas · Information Architecture</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-circle">03</div>
+          <div class="proc-content">
+            <div class="proc-title">Design</div>
+            <div class="proc-desc">Wireframes, interaction design, high-fidelity UI, and interactive prototypes grounded
+              in real design systems.</div>
+            <span class="proc-tag">Wireframes · High-Fidelity UI · Prototyping · Design Systems</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-circle">04</div>
+          <div class="proc-content">
+            <div class="proc-title">Validate</div>
+            <div class="proc-desc">Usability testing, accessibility review, iterative refinement, and seamless developer
+              handoff to ensure quality delivery.</div>
+            <span class="proc-tag">Usability Testing · Accessibility · Iteration · Developer Handoff</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="testi-dots">
-      <div class="testi-dot active" data-t="0"></div>
-      <div class="testi-dot" data-t="1"></div>
-      <div class="testi-dot" data-t="2"></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ SECTION 6 · STATS ═══════════════════════ -->
-<section class="section" id="s6">
-  <div class="sec-inner stats-layout">
-    <div class="kicker">Numbers</div>
-    <div class="big-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;">By the <span class="ital gold-span">Numbers</span></div>
-    <div class="skills-section">
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">User Research</span><span class="sk-pct">96%</span></div><div class="sk-track"><div class="sk-fill" data-w="96"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Interaction Design</span><span class="sk-pct">95%</span></div><div class="sk-track"><div class="sk-fill" data-w="95"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Information Architecture</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill" data-w="92"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Prototyping</span><span class="sk-pct">94%</span></div><div class="sk-track"><div class="sk-fill" data-w="94"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Design Systems</span><span class="sk-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Usability Testing</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill" data-w="88"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Accessibility</span><span class="sk-pct">85%</span></div><div class="sk-track"><div class="sk-fill" data-w="85"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">AI Workflows</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Cross-platform UX</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill" data-w="92"></div></div></div>
-      <div class="sk-row"><div class="sk-head"><span class="sk-name">Motion Design</span><span class="sk-pct">75%</span></div><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
+  <!-- ═══════════════════════ SECTION 5 · TESTIMONIALS ═══════════════════════ -->
+  <section class="section" id="s5">
+    <div class="sec-inner testi-layout">
+      <div class="kicker" style="justify-content:center;">Client Words</div>
+      <div class="big-title"
+        style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin-bottom:2rem;">
+        What <span class="ital gold-span">they</span> say</div>
+      <span class="quote-mark">"</span>
+      <div class="testi-cards">
+        <div class="testi-card active">
+          <div class="testi-quote">Arvind didn't just build our product — he redefined how we think about design. The
+            interface he created increased our conversion rate by 340%. Working with him is an unfair advantage.</div>
+          <div class="testi-author">Marcus Venn</div>
+          <div class="testi-role">CEO, Luminary Technologies</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">We've worked with many agencies over the years. Arvind's ability to translate complex
+            business logic into beautiful, intuitive UI is genuinely rare. He's in a different league.</div>
+          <div class="testi-author">Priya Kohli</div>
+          <div class="testi-role">CPO, Pulse Finance</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">Delivered ahead of schedule, exceeded every spec, and the code was so clean our
+            in-house team applauded. If you get the chance to work with Arvind, take it immediately.</div>
+          <div class="testi-author">James Calloway</div>
+          <div class="testi-role">Founder, Apex Studio</div>
+        </div>
+      </div>
+      <div class="testi-dots">
+        <div class="testi-dot active" data-t="0"></div>
+        <div class="testi-dot" data-t="1"></div>
+        <div class="testi-dot" data-t="2"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ SECTION 7 · UX THINKING ═══════════════════════ -->
-<section class="section" id="s7">
-  <div class="sec-inner blog-layout">
-    <div class="work-header">
-      <div><div class="kicker">UX Thinking</div><div class="work-title">From the <span class="ital gold-span">Journal</span></div></div>
-      <a href="blog.html" class="work-view-all">All Posts <i class="bi bi-arrow-right"></i></a>
+  <!-- ═══════════════════════ SECTION 6 · STATS ═══════════════════════ -->
+  <section class="section" id="s6">
+    <div class="sec-inner stats-layout">
+      <div class="kicker">Numbers</div>
+      <div class="big-title"
+        style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;">By the <span
+          class="ital gold-span">Numbers</span></div>
+      <div class="skills-section">
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">User Research</span><span class="sk-pct">96%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="96"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Interaction Design</span><span class="sk-pct">95%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="95"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Information Architecture</span><span class="sk-pct">92%</span>
+          </div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="92"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Prototyping</span><span class="sk-pct">94%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="94"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Design Systems</span><span class="sk-pct">90%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="90"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Usability Testing</span><span class="sk-pct">88%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="88"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Accessibility</span><span class="sk-pct">85%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="85"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">AI Workflows</span><span class="sk-pct">80%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="80"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Cross-platform UX</span><span class="sk-pct">92%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="92"></div>
+          </div>
+        </div>
+        <div class="sk-row">
+          <div class="sk-head"><span class="sk-name">Motion Design</span><span class="sk-pct">75%</span></div>
+          <div class="sk-track">
+            <div class="sk-fill" data-w="75"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="blog-grid">
-      <div class="blog-card featured" onclick="window.location.href='blog.html?post=1'">
-        <img class="blog-img" src="img/blog/ChatGPT Image Jul 2, 2026, 04_56_15 PM.png" alt="">
-        <div class="blog-body">
-          <div class="blog-cat">AI &amp; UX</div>
-          <div class="blog-title">Designing AI Experiences People Trust</div>
-          <div class="blog-date">Jun 2026 · 8 min read</div>
-        </div>
-      </div>
-      <div class="blog-card" onclick="window.location.href='blog.html?post=2'">
-        <img class="blog-img" src="img/blog/blog2 imge.png" alt="">
-        <div class="blog-body">
-          <div class="blog-cat">Design Systems</div>
-          <div class="blog-title">Building Design Systems for Enterprise Products</div>
-          <div class="blog-date">Apr 2026 · 6 min read</div>
-        </div>
-      </div>
-      <div class="blog-card" onclick="window.location.href='blog.html?post=3'">
-        <img class="blog-img" src="img/blog/Gemini_Generated_Image_jgxygjgxygjgxygj.png" alt="">
-        <div class="blog-body">
-          <div class="blog-cat">Research</div>
-          <div class="blog-title">How Research Shapes Better Product Decisions</div>
-          <div class="blog-date">Feb 2026 · 5 min read</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════ SECTION 8 · CONTACT ═══════════════════════ -->
-<section class="section" id="s8">
-  <div class="sec-inner contact-layout">
-    <div class="kicker">Get in Touch</div>
-    <div class="contact-top">
-      <div class="contact-left">
-        <div class="contact-big">Let's build<br>something <span class="ital gold-span">remarkable</span><br>together.</div>
-        <p class="contact-sub">Whether you have a brief, a question, or just an idea scribbled on a napkin — I'd love to hear from you. I typically respond within 24 hours.</p>
-        <div class="contact-info">
-          <div class="c-info-row"><i class="bi bi-envelope"></i><a href="mailto:arvindkiransp@gmail.com">arvindkiransp@gmail.com</a></div>
-          <div class="c-info-row"><i class="bi bi-telephone"></i><a href="tel:+91 9944595134">+91 99445 95134</a></div>
-          <div class="c-info-row"><i class="bi bi-geo-alt"></i><span>Chennai, Tamil Nadu, India · Remote Worldwide</span></div>
-          <div class="c-info-row"><i class="bi bi-clock"></i><span>GMT+5:30 (IST) · Replies in ~24hrs</span></div>
+  <!-- ═══════════════════════ SECTION 7 · UX THINKING ═══════════════════════ -->
+  <section class="section" id="s7">
+    <div class="sec-inner blog-layout">
+      <div class="work-header">
+        <div>
+          <div class="kicker">UX Thinking</div>
+          <div class="work-title">From the <span class="ital gold-span">Journal</span></div>
         </div>
-        <div class="socials-row">
-          <a href="https://github.com/ArvindkiranSP" class="soc-link" target="_blank"><i class="bi bi-github"></i></a>
-          <a href="https://www.linkedin.com/in/arvind-kiran-sp-004391297/" class="soc-link" target="_blank"><i class="bi bi-linkedin"></i></a>
-          <a href="https://www.behance.net/arvindkiransp" class="soc-link" target="_blank"><i class="bi bi-behance"></i></a>
-          <!--<a href="#" class="soc-link"><i class="bi bi-twitter-x"></i></a>
+        <a href="blog.html" class="work-view-all">All Posts <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card featured" onclick="window.location.href='blog.html?post=1'">
+          <img class="blog-img" src="img/blog/ChatGPT Image Jul 2, 2026, 04_56_15 PM.png" alt="">
+          <div class="blog-body">
+            <div class="blog-cat">AI &amp; UX</div>
+            <div class="blog-title">Designing AI Experiences People Trust</div>
+            <div class="blog-date">Jun 2026 · 8 min read</div>
+          </div>
+        </div>
+        <div class="blog-card" onclick="window.location.href='blog.html?post=2'">
+          <img class="blog-img" src="img/blog/blog2 imge.png" alt="">
+          <div class="blog-body">
+            <div class="blog-cat">Design Systems</div>
+            <div class="blog-title">Building Design Systems for Enterprise Products</div>
+            <div class="blog-date">Apr 2026 · 6 min read</div>
+          </div>
+        </div>
+        <div class="blog-card" onclick="window.location.href='blog.html?post=3'">
+          <img class="blog-img" src="img/blog/Gemini_Generated_Image_jgxygjgxygjgxygj.png" alt="">
+          <div class="blog-body">
+            <div class="blog-cat">Research</div>
+            <div class="blog-title">How Research Shapes Better Product Decisions</div>
+            <div class="blog-date">Feb 2026 · 5 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ SECTION 8 · FAQ ═══════════════════════ -->
+  <section class="section" id="s8">
+    <div class="sec-inner faq-layout">
+      <div class="kicker" style="justify-content:center;">Common Questions</div>
+      <div class="big-title"
+        style="text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin-bottom:2rem;">
+        Frequently Asked <span class="ital gold-span">Questions</span></div>
+
+      <div class="faq-list">
+        <div class="faq-item active">
+          <div class="faq-header">
+            <span class="faq-title">What is your product design process?</span>
+            <i class="bi bi-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-content" style="display:block;">
+            My design workflow spans user research, user journey mapping, wireframing, high-fidelity UI design in Figma,
+            clickable prototyping, usability testing, and systematic developer handoff. I follow user-centered
+            principles to create accessible, logical, and highly converting digital products.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-title">Do you work on an hourly rate or fixed project basis?</span>
+            <i class="bi bi-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-content">
+            I support multiple collaboration models. For well-scoped projects with clear specifications, I operate on a
+            fixed-bid basis. For ongoing product growth, iterative additions, or design system management, I work on a
+            monthly or weekly retainer.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-title">Which design tools do you use?</span>
+            <i class="bi bi-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-content">
+            Figma is my primary tool for visual layout design, components, library creation, and prototyping. I also use
+            FigJam/Miro for structural flows and user research synthesis, Maze for quantitative usability tests, and
+            Adobe Creative Suite for visual design assets.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span class="faq-title">Can you collaborate directly with our engineering team?</span>
+            <i class="bi bi-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-content">
+            Absolutely. I believe design is only as good as the final code. I structure my Figma files using native
+            auto-layouts, clean variables/tokens, and clear states. I host review sessions, address engineering
+            constraints, and ensure a seamless developer handoff.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ SECTION 9 · CONTACT ═══════════════════════ -->
+  <section class="section" id="s9">
+    <div class="sec-inner contact-layout">
+      <div class="kicker">Get in Touch</div>
+      <div class="contact-top">
+        <div class="contact-left">
+          <div class="contact-big">Let's build<br>something <span class="ital gold-span">remarkable</span><br>together.
+          </div>
+          <p class="contact-sub">Whether you have a brief, a question, or just an idea scribbled on a napkin — I'd love
+            to hear from you. I typically respond within 24 hours.</p>
+          <div class="contact-info">
+            <div class="c-info-row"><i class="bi bi-envelope"></i><a
+                href="mailto:arvindkiransp@gmail.com">arvindkiransp@gmail.com</a></div>
+            <div class="c-info-row"><i class="bi bi-telephone"></i><a href="tel:+91 9944595134">+91 99445 95134</a>
+            </div>
+            <div class="c-info-row"><i class="bi bi-geo-alt"></i><span>Chennai, Tamil Nadu, India · Remote
+                Worldwide</span></div>
+            <div class="c-info-row"><i class="bi bi-clock"></i><span>GMT+5:30 (IST) · Replies in ~24hrs</span></div>
+          </div>
+          <div class="socials-row">
+            <a href="https://github.com/ArvindkiranSP" class="soc-link" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/arvind-kiran-sp-004391297/" class="soc-link" target="_blank"><i
+                class="bi bi-linkedin"></i></a>
+            <a href="https://www.behance.net/arvindkiransp" class="soc-link" target="_blank"><i
+                class="bi bi-behance"></i></a>
+            <!--<a href="#" class="soc-link"><i class="bi bi-twitter-x"></i></a>
           <a href="#" class="soc-link"><i class="bi bi-instagram"></i></a>-->
+          </div>
+        </div>
+        <div class="contact-form">
+          <input class="cf2" type="text" placeholder="Your Name">
+          <input class="cf2" type="email" placeholder="Email Address">
+          <input class="cf2" type="text" placeholder="Project Budget (optional)">
+          <textarea class="cf2" placeholder="Tell me about your project..."></textarea>
+          <button class="send-btn">Send Message &nbsp; ↗</button>
         </div>
       </div>
-      <div class="contact-form">
-        <input class="cf2" type="text" placeholder="Your Name">
-        <input class="cf2" type="email" placeholder="Email Address">
-        <input class="cf2" type="text" placeholder="Project Budget (optional)">
-        <textarea class="cf2" placeholder="Tell me about your project..."></textarea>
-        <button class="send-btn">Send Message &nbsp; ↗</button>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== SCRIPTS ===== -->
-<!-- jQuery -->
-<script src="js/jquery-3.7.1.min.js"></script>
-<!-- Bootstrap 5 JS -->
-<script src="js/bootstrap.bundle.min.js"></script>
-<!-- GSAP -->
-<script src="js/gsap.min.js"></script>
-<!-- main js -->
-<script src="js/splash-cursor.js"></script>
-<script src="js/main.js"></script>
+  <!-- ===== SCRIPTS ===== -->
+  <!-- jQuery -->
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <!-- Bootstrap 5 JS -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- GSAP -->
+  <script src="js/gsap.min.js"></script>
+  <!-- main js -->
+  <script src="js/splash-cursor.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
 </html>
